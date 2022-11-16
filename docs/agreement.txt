@@ -1,1 +1,24 @@
-Agreement
+
+Group Members:
+Austin Bartolome
+Ethan Cook
+Jeremy Neilson
+Morris Ho
+Neil Y Wang (Scrum Master)
+
+Communication Methods:
+Discord
+Jira
+Instagram
+
+Daily Standup Meetings:
+TBD
+
+Version Control:
+GitHub
+
+Other:
+We must dress formally during standup meetings.
+Nothing is ever the Scrum Master's fault.
+Weekly payments must be made to the Scrum Master.
+<3
