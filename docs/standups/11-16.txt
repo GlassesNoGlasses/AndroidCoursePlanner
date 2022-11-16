@@ -2,4 +2,8 @@ November 16th Standup Documentation:
 
 - Created requirements and standards for GitHub and testing.
 
+What you did:
 
+What you are planning on doing:
+
+Obstructions:
