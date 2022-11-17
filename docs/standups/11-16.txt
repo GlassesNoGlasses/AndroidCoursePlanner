@@ -2,8 +2,9 @@ November 16th Standup Documentation:
 
 - Created requirements and standards for GitHub and testing.
 
-What you did:
+Morris
+What you did: discuss project ideas
 
-What you are planning on doing:
+What you are planning on doing: learning Figma for UI/UX design
 
-Obstructions:
+Obstructions: N/A for now
