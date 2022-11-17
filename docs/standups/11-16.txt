@@ -7,3 +7,8 @@ What you did:
 What you are planning on doing:
 
 Obstructions:
+
+Ethan Cook
+What I did: Helped get the Jira and discord set up and brainstormed design
+What I am planning on doing: Learning firebase database and getting started on backend design
+Obstructions: Nothing
