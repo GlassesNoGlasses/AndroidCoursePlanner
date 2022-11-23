@@ -11,3 +11,11 @@ Ethan Cook
 What I did: Helped get the Jira and discord set up and brainstormed design
 What I am planning on doing: Learning firebase database and getting started on backend design
 Obstructions: Nothing
+
+Austin Bartolome 
+Did: 
+Helped create documentation and wiki's to help organize logistics and developer standards. 
+Also helped create a plan for user stories 1 and 2. 
+
+Plan:Learning more about android studio and XML, and continue to plan user stories 1 and 2. 
+Obstructions: N/A
