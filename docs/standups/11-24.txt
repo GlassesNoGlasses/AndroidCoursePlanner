@@ -1,0 +1,37 @@
+Who: Neil
+
+What you did: Set up authentication for Student accounts in backend (User story 1).
+
+What you are planning on doing: Finish Backend implementation of Student accounts and functionalities (login, signup, signin, etc.); implement backend with UI.
+
+Obstructions: UI being added.
+
+
+
+Who: Ethan
+
+What you did: Set up authentication stuff
+
+What you are planning on doing: fetching student/admin data on login
+
+Obstructions: nothing
+
+
+
+Who: Morris
+
+What You Did: Came up with options to solve exporting from figma issue and tested them
+
+What You are Planning on doing: fully integrating the design from figma into android studio 
+
+Obstructions: N/A
+
+
+
+Who: Austin
+
+What you did: Looked into back-end implementation, to begin integrating back-end into front-end. (e.g. button presses, onclicks)
+
+What you are planning on doing: Begin to integrate back-end development into front-end interactions.
+
+Obstructions: nothing

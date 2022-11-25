@@ -1,0 +1,47 @@
+Who: Austin
+
+What You Did: Learned more about XML syntax and improved understanding of how to work with Java alongside XML. Specifically watched YouTube videos to further understanding of fragments and how back-end ties in with UI.
+
+What You are Planning on doing: Finish learning enough XML and familiarizing with Android Studio.
+
+Obstructions: N/A
+
+ 
+
+Who: Ethan
+
+What You Did: Learned a prototyped working with databases
+
+What You are Planning on doing: Learning authentication and planning backend structure
+
+Obstructions: Nothing
+
+ 
+
+Who: Neil 
+
+What You Did: Finished creating base requirement drafts for stories; learned more about firebase.
+
+What You are Planning on doing: work with Figma to desing UI.
+
+Obstructions: None
+
+ 
+
+Who: Morris
+
+What You Did: tinkering with figma to understand basic controls and try with different designs
+
+What You are Planning on doing: Plan out the map for different fragments, design the main startup screen
+
+Obstructions: None
+
+ 
+
+Who: Jeremy
+
+What You Did: Messing around with visual parts of Android Studio and Figma. Drew a first draft of the app layout.
+
+What You are Planning on doing: Implement and improve first draft into Figma
+
+Obstructions: None

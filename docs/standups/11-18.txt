@@ -1,0 +1,26 @@
+Who:Austin
+
+What You Did: Worked on documentation and helped with backend design planning.
+
+What You are Planning on doing: Start to understand the linking between backend and frontend.
+
+Obstructions:None
+
+
+Who: Ethan
+
+What You Did: Continued learning ins and outs of firebase database
+
+What You are Planning on doing: Primarily figuring out firebase authentication
+
+Obstructions: Nothing
+
+ 
+
+Who: Neil 
+
+What You Did: Worked on Jira optimization.
+
+What You are Planning on doing: Start Android Project backend database.
+
+Obstructions: None
