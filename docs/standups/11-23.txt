@@ -1,0 +1,47 @@
+Who: Neil 
+
+What You Did: Further organized and created multiple “tasks” for each user story to assign to people. Started the sprint. Learned more about Firebase.
+
+What You are Planning on doing: Integrate firebase authentication (Story 1: Backend task)
+
+Obstructions: None
+
+
+
+Who: Ethan
+
+What you did: Set up framework for backend
+
+What you are planning on doing: working on some feature implementations
+
+Obstructions: UI templates being done
+
+
+
+Who: Austin
+
+What you Did: Improved understanding on how to link back-end with front-end. Also looked into onCreateView and onClick.
+
+What you are planning on doing: Start linking back-end to front-end and understand back-end implementation to do so.
+
+Obstructions: N/A
+
+
+
+Who: Jeremy
+
+What You Did: Started to try to implement Figma design into Android Studio
+
+What You are Planning on doing: Continuing that
+
+Obstructions: N/A
+
+
+
+Who: Morris
+
+What You Did: Trying to Implement Figma design into Android Studio and reailzing you have to pay to directly import it into Android Studio
+
+What You are Planning on doing: Coming up with Alternatives
+
+Obstructions: N/A

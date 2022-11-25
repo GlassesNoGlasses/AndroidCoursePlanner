@@ -1,0 +1,47 @@
+Who: Neil
+
+What You Did: Learned about unit tested; started android project and firebase setup.
+
+What You are Planning on doing: Firebase authentication; UML diagrams; main classes/interfaces.
+
+Obstructions: None.
+
+ 
+
+Who: Moo hoe 
+
+What You Did: started designing the main frames for the project, created a slick logo for our app
+
+What You are Planning on doing: finish the UI basics by Wednesday
+
+Obstructions: having only 24 hrs in a day
+
+ 
+
+Who: Ethan
+
+What you did: rough backend and database design
+
+What you are planning on doing: firebase authentication learning
+
+Obstructions: nothing
+
+ 
+
+Who: Austin
+
+What you did: Learned more about Android Studio and testing. Also worked with Ethan to add and edit the  backend design.
+
+What you are planning on doing: Familiarize with testing specifically in Android Studio.
+
+Obstructions: N/A
+
+ 
+
+Who: Jeremy
+
+What You Did: Created UI page foundations. Learned more about transitions and components in Figma
+
+What You are Planning on doing: Finishing the basic Figma pages
+
+Obstructions: N/A
