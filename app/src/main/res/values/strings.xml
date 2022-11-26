@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">AndroidCoursePlanner_final</string>
+    <string name="title_activity_login">Login</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="course_planner">Course Planner</string>
+    <string name="log_out">Log Out</string>
+    <string name="create_course_plan">Create Course Plan</string>
+    <string name="courses_i_ve_taken">Courses I\'ve Taken</string>
+    <string name="view_course_plan">View Course Plan</string>
+    <string name="add_course">Add Course</string>
+    <string name="back_button_text">Back</string>
+    <string name="course_name">Course Name</string>
+    <string name="code">Code</string>
+    <string name="create_course">Create Course</string>
+    <string name="view_courses">View Courses</string>
+    <string name="course_code">Course Code</string>
+    <string name="summer">Summer</string>
+    <string name="winter">Winter</string>
+    <string name="fall">Fall</string>
+    <string name="sessions_offered">Sessions Offered:</string>
 </resources>
