@@ -35,4 +35,8 @@
     <string name="Password_field">Password</string>
     <string name="signup_link"><u>Sign up</u></string>
     <string name="noaccount">Don\'t have an account?</string>
+    <string name="name">Name:</string>
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="sign_up">Sign up</string>
 </resources>
