@@ -1,5 +1,10 @@
 package Backend;
 
+import android.util.Log;
+
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Student extends Profile {
@@ -11,17 +16,11 @@ public class Student extends Profile {
     }
     public Student(String id) {
         this.id = id;
+        takenCourses = new ArrayList<String>();
+        plannedCourses = new ArrayList<String>();
     }
 
     //getters and setters for firebase vv
-    public String getId() {
-        return id;
-    }
-
-    public void setId (String id) {
-        this.id = id;
-    }
-
     public List<String> getTakenCourses() {
         return takenCourses;
     }
