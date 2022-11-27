@@ -31,4 +31,8 @@
     <string name="admin_text">Admin</string>
     <string name="enter_course_code">Enter Course Code</string>
     <string name="course_plan_creation">Course Plan Creation</string>
+    <string name="username_field">Username:</string>
+    <string name="Password_field">Password</string>
+    <string name="signup_link"><u>Sign up</u></string>
+    <string name="noaccount">Don\'t have an account?</string>
 </resources>
