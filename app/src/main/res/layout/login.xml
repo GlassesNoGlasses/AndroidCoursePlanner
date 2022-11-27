@@ -56,10 +56,10 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/Username_field"
+            android:id="@+id/email_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/username_field" />
+            android:text="@string/email_field" />
 
         <EditText
             android:id="@+id/Username"
@@ -69,10 +69,10 @@
             android:inputType="textPersonName" />
 
         <TextView
-            android:id="@+id/Password_field"
+            android:id="@+id/password_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Password_field" />
+            android:text="@string/password_field" />
 
         <EditText
             android:id="@+id/Password"

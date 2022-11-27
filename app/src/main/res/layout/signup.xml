@@ -59,23 +59,10 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/name_field"
+            android:id="@+id/username_field_su"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/name" />
-
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/username_field"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/username" />
+            android:text="@string/username_field" />
 
         <EditText
             android:id="@+id/username"
@@ -85,13 +72,26 @@
             android:inputType="textPersonName" />
 
         <TextView
-            android:id="@+id/password_field"
+            android:id="@+id/email_field_su"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/password" />
+            android:text="@string/email_field" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/password_field_su"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/password_field" />
+
+        <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
