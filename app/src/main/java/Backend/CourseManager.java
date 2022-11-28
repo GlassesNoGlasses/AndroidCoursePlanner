@@ -1,6 +1,8 @@
 package Backend;
 
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -20,17 +22,18 @@ public final class CourseManager {
     private CourseManager() {
         courseRef = FirebaseDatabase.getInstance().getReference().child("Courses");
 
-        courseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                getCourses(snapshot);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        //TODO add something to update lists if needed in onDataChange(), if not needed delete
+//        courseRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
         courses = new ArrayList<Course>();
     }
@@ -41,12 +44,24 @@ public final class CourseManager {
         return instance;
     }
 
-    //for use in database reading, converting database courses to the hashset
-    public void getCourses(DataSnapshot s) {
+    //for use in database reading, converting database courses to the course list
+    public void getCourses(GetCoursesCallback callback) {
         courses.clear();
-        for (DataSnapshot child : s.getChildren()) {
-            courses.add(child.getValue(Course.class));
-        }
+
+        courseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    courses.add(child.getValue(Course.class));
+                }
+                callback.onCallback(courses);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("CourseManager", "getCourses() failed");
+            }
+        });
     }
 
     public void addCourse(Course course) {
