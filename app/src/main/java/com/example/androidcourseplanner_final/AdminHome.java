@@ -9,10 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.androidcourseplanner_final.databinding.LoginBinding;
+import com.example.androidcourseplanner_final.databinding.AdminHomeBinding;
 
-public class Login extends Fragment {
-    private LoginBinding binding;
+public class AdminHome extends Fragment {
+    private AdminHomeBinding binding;
 
     @Override
     public View onCreateView(
@@ -20,18 +20,25 @@ public class Login extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = com.example.androidcourseplanner_final.databinding.LoginBinding.inflate(inflater, container, false);
+        binding = com.example.androidcourseplanner_final.databinding.AdminHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.LoginButton.setOnClickListener(new View.OnClickListener() {
+        binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(Login.this)
-                        .navigate(R.id.action_Login_to_StudentHome);
+                NavHostFragment.findNavController(AdminHome.this)
+                        .navigate(R.id.action_to_Login);
+            }
+        });
+        binding.createNewCourseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(AdminHome.this)
+                        .navigate(R.id.action_AdminHome_to_AdminCourseCreation);
             }
         });
     }

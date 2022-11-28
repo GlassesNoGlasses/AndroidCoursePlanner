@@ -15,6 +15,35 @@
         <action
             android:id="@+id/action_Login_to_StudentHome"
             app:destination="@id/StudentHome" />
+        <action
+            android:id="@+id/action_Login_to_Signup"
+            app:destination="@id/Signup" />
+        <action
+            android:id="@+id/action_Login_to_AdminHome"
+            app:destination="@id/AdminHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/Signup"
+        android:name="com.example.androidcourseplanner_final.Signup"
+        android:label="Signup"
+        tools:layout="@layout/signup">
+
+        <action
+            android:id="@+id/action_to_Login"
+            app:destination="@id/Login" />
+    </fragment>
+    <fragment
+        android:id="@+id/AdminHome"
+        android:name="com.example.androidcourseplanner_final.AdminHome"
+        android:label="Admin Home"
+        tools:layout="@layout/admin_home">
+        <action
+            android:id="@+id/action_AdminHome_to_AdminCourseCreation"
+            app:destination="@id/AdminCourseCreation" />
+        <action
+            android:id="@+id/action_to_Login"
+            app:destination="@id/Login" />
+
     </fragment>
     <fragment
         android:id="@+id/StudentHome"
@@ -25,6 +54,16 @@
         <action
             android:id="@+id/action_StudentHome_to_Login"
             app:destination="@id/Login" />
+    </fragment>
+    <fragment
+        android:id="@+id/AdminCourseCreation"
+        android:name="com.example.androidcourseplanner_final.AdminCourseCreation"
+        android:label="Admin Course Creation"
+        tools:layout="@layout/admin_course_creation">
+
+        <action
+            android:id="@+id/action_AdminCourseCreation_to_AdminHome"
+            app:destination="@id/AdminHome" />
     </fragment>
 
 </navigation>

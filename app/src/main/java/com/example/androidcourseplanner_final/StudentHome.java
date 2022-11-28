@@ -55,6 +55,13 @@ public class StudentHome extends Fragment {
                         .navigate(R.id.action_Login_to_StudentHome);
             }
         });
+        binding.backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(StudentHome.this)
+                        .navigate(R.id.action_StudentHome_to_Login);
+            }
+        });
     }
 
     @Override
