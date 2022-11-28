@@ -25,6 +25,46 @@
         <action
             android:id="@+id/action_StudentHome_to_Login"
             app:destination="@id/Login" />
+        <action
+            android:id="@+id/action_StudentHome_to_StudentCoursesTaken"
+            app:destination="@id/StudentCoursesTaken" />
+        <action
+            android:id="@+id/action_StudentHome_to_StudentPlanCreator"
+            app:destination="@id/StudentPlanCreator" />
     </fragment>
+    <fragment
+        android:id="@+id/StudentCoursesTaken"
+        android:name="com.example.androidcourseplanner_final.StudentCoursesTaken"
+        android:label="Student Courses Taken"
+        tools:layout="@layout/student_courses_taken">
+
+        <action
+            android:id="@+id/action_StudentCoursesTaken_to_StudentHome"
+            app:destination="@id/StudentHome" />
+        <action
+            android:id="@+id/action_StudentCoursesTaken_to_StudentAddTakenCourse"
+            app:destination="@id/StudentAddTakenCourse" />
+    </fragment>
+    <fragment
+        android:id="@+id/StudentAddTakenCourse"
+        android:name="com.example.androidcourseplanner_final.StudentAddTakenCourse"
+        android:label="Student Add Taken Course"
+        tools:layout="@layout/student_add_taken_course">
+
+        <action
+            android:id="@+id/action_StudentAddTakenCourse_to_StudentCoursesTaken"
+            app:destination="@id/StudentCoursesTaken" />
+    </fragment>
+    <fragment
+        android:id="@+id/StudentPlanCreator"
+        android:name="com.example.androidcourseplanner_final.StudentPlanCreator"
+        android:label="Student Plan Creator"
+        tools:layout="@layout/student_plan_creator">
+
+        <action
+            android:id="@+id/action_StudentPlanCreator_to_StudentHome"
+            app:destination="@id/StudentHome" />
+    </fragment>
+
 
 </navigation>
