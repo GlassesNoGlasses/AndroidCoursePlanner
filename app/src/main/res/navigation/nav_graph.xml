@@ -3,27 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/StudentHome">
+    app:startDestination="@id/Login">
 
 
-    <fragment
-        android:id="@+id/StudentHome"
-        android:name="Integration.StudentHome"
-        android:label="Student Home"
-        tools:layout="@layout/student_home">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/Login" />
-    </fragment>
     <fragment
         android:id="@+id/Login"
-        android:name="Integration.Login"
+        android:name="com.example.androidcourseplanner_final.Login"
         android:label="Login"
         tools:layout="@layout/login">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            android:id="@+id/action_Login_to_StudentHome"
             app:destination="@id/StudentHome" />
     </fragment>
+    <fragment
+        android:id="@+id/StudentHome"
+        android:name="com.example.androidcourseplanner_final.StudentHome"
+        android:label="Student Home"
+        tools:layout="@layout/student_home">
+
+        <action
+            android:id="@+id/action_StudentHome_to_Login"
+            app:destination="@id/Login" />
+    </fragment>
+
 </navigation>

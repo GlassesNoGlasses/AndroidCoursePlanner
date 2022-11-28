@@ -1,4 +1,4 @@
-package Integration;
+package com.example.androidcourseplanner_final;
 
 import static androidx.databinding.DataBindingUtil.setContentView;
 
@@ -11,8 +11,6 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
-import com.example.androidcourseplanner_final.R;
 
 import com.example.androidcourseplanner_final.databinding.StudentHomeBinding;
 
@@ -38,7 +36,7 @@ public class StudentHome extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(StudentHome.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                        .navigate(R.id.action_Login_to_StudentHome);
             }
         });
 
@@ -46,7 +44,7 @@ public class StudentHome extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(StudentHome.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                        .navigate(R.id.action_Login_to_StudentHome);
             }
         });
 
@@ -54,7 +52,7 @@ public class StudentHome extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(StudentHome.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                        .navigate(R.id.action_Login_to_StudentHome);
             }
         });
     }
