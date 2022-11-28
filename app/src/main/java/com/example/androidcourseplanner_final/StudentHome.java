@@ -32,11 +32,11 @@ public class StudentHome extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.createPlanButton.setOnClickListener(new View.OnClickListener() {
+        binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(StudentHome.this)
-                        .navigate(R.id.action_Login_to_StudentHome);
+                        .navigate(R.id.action_StudentHome_to_Login);
             }
         });
 
@@ -44,7 +44,7 @@ public class StudentHome extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(StudentHome.this)
-                        .navigate(R.id.action_Login_to_StudentHome);
+                        .navigate(R.id.action_StudentHome_to_StudentCoursesTaken);
             }
         });
 
@@ -52,14 +52,7 @@ public class StudentHome extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(StudentHome.this)
-                        .navigate(R.id.action_Login_to_StudentHome);
-            }
-        });
-        binding.backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(StudentHome.this)
-                        .navigate(R.id.action_StudentHome_to_Login);
+                        .navigate(R.id.action_StudentHome_to_StudentPlanCreator);
             }
         });
     }
