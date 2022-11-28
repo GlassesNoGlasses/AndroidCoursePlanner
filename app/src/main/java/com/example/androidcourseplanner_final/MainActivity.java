@@ -22,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
         binding = MainActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        NavController navController = Navigation.findNavController(
-                this, R.id.nav_host_fragment_content_main);
 
     }
 }
