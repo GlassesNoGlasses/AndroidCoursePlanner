@@ -9,9 +9,31 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
+
 public class ExampleUnitTest {
+
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    public void testCheckInfo() {
+        //To be completed
+    }
+
+    @Test
+    public void testSignUp() {
+        // To be completed
+    }
+
+    @Test
+    public void testSignIn() {
+        // To be completed
+    }
+
+    @Test
+    public void testIsSignedIn() {
+        // To be completed
+    }
+
+    @Test
+    public void testGetProfile() {
+        // To be completed
     }
 }
