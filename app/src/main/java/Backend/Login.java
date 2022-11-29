@@ -22,10 +22,10 @@ public abstract class Login {
     static FirebaseAuth auth = FirebaseAuth.getInstance();
 
     //Checks if the username and password on signup are valid
-    public static String checkInfo(String username, String password) {
-        //TODO integrate with UI alerts
+    public static String checkInfo(String username, String password, String email) {
         if (username.length() < 2)
                 return "Username has to be at least 2 characters.";
+        else if (!email.contains("@")) return "Invalid Email";
         else if (password.length() < 6)
                 return "Password has to be at least 6 characters.";
 

@@ -45,10 +45,10 @@ public class Signup extends Fragment {
                 String username = binding.username.getText().toString();
                 String email = binding.email.getText().toString();
                 String password = binding.password.getText().toString();
+                String errorCheck = Backend.Login.checkInfo(username, password, email);
 
-                if (username.equals("") || email.equals("") || password.equals("")) {
-                    Toast.makeText(getContext(),
-                            "Fill in empty fields", Toast.LENGTH_SHORT).show();
+                if (errorCheck != null) {
+                    Toast.makeText(getContext(), errorCheck, Toast.LENGTH_SHORT).show();
                     return;
                 }
 

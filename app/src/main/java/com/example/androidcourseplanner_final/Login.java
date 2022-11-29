@@ -67,7 +67,7 @@ public class Login extends Fragment {
                     @Override
                     public void onFailure() {
                         Toast.makeText(getContext(),
-                                "Sign In Failed", Toast.LENGTH_SHORT).show();
+                                "Invalid Login Information", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
