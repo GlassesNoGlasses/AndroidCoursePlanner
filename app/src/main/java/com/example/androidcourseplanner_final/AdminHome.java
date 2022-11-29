@@ -11,6 +11,8 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.androidcourseplanner_final.databinding.AdminHomeBinding;
 
+import Backend.Logout;
+
 public class AdminHome extends Fragment {
     private AdminHomeBinding binding;
 
@@ -30,8 +32,9 @@ public class AdminHome extends Fragment {
         binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Logout.signOut();
                 NavHostFragment.findNavController(AdminHome.this)
-                        .navigate(R.id.action_to_Login);
+                        .navigate(R.id.action_Signup_to_Login);
             }
         });
         binding.createNewCourseButton.setOnClickListener(new View.OnClickListener() {

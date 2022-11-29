@@ -8,7 +8,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,14 +39,15 @@ public abstract class Login {
     }
 
     //automatically checks email by firebase
-    public static void signUp(String username, String email, String password) {
+    public static void signUp(String username, String email,
+                              String password, AuthenticationCallback callback) {
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (!task.isSuccessful()) {
-                    //TODO add something that happens on fail
                     Log.println(Log.WARN, "signup Failed", "Here");
+                    callback.onFailure();
                     return;
                 }
 
@@ -56,21 +56,24 @@ public abstract class Login {
                 usersRef.child("Students").child(auth.getCurrentUser()
                         .getUid()).setValue(new Student(username));
                 Logout.signOut();
+
+                callback.onSuccess();
             }
         });
     }
 
-    public static void signIn(String email, String password) {
+    public static void signIn(String email, String password, AuthenticationCallback callback) {
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(
                 new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (!task.isSuccessful()) {
-                    //TODO add something that happens on fail
+                    callback.onFailure();
                     return;
                 }
                 Log.println(Log.WARN, "SignIn Success", "Here");
+                callback.onSuccess();
             }
         });
     }
@@ -91,9 +94,9 @@ public abstract class Login {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.child("Students").hasChild(id)) {
-                    callback.onCallback(snapshot.child("Students").child(id).getValue(Student.class));
+                    callback.onStudent(snapshot.child("Students").child(id).getValue(Student.class));
                 } else if (snapshot.child("Admins").hasChild(id)) {
-                    callback.onCallback(snapshot.child("Admins").child(id).getValue(Admin.class));
+                    callback.onAdmin(snapshot.child("Admins").child(id).getValue(Admin.class));
                 }
             }
 

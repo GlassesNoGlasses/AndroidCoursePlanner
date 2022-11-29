@@ -11,8 +11,8 @@
     <string name="login_failed">"Login failed"</string>
     <string name="course_planner">Course Planner</string>
     <string name="log_out">Log Out</string>
-    <string name="create_course_plan">Create Course Plan</string>
-    <string name="courses_i_ve_taken">Courses I\'ve Taken</string>
+    <string name="create_course_plan">Course Plan</string>
+    <string name="courses_i_ve_taken">My Courses</string>
     <string name="view_course_plan">View Course Plan</string>
     <string name="add_course">Add Course</string>
     <string name="back_button_text">Back</string>
@@ -37,4 +37,7 @@
     <string name="signup_link"><u>Sign up</u></string>
     <string name="noaccount">Don\'t have an account?</string>
     <string name="sign_up">Sign up</string>
+    <string name="planned_courses">Planned Courses</string>
+    <string name="taken_courses">Taken Courses</string>
+    <string name="prompt_username">Username</string>
 </resources>

@@ -11,7 +11,7 @@ public abstract class Logout {
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         try{
-            auth.getInstance().signOut();
+            auth.signOut();
             Log.d("Signout", "Signout success");
             return true;
 

@@ -62,11 +62,13 @@
             android:text="@string/email_field" />
 
         <EditText
-            android:id="@+id/Username"
+            android:id="@+id/Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:hint="@string/prompt_email"
+            android:inputType="textPersonName"
+            android:minHeight="48dp" />
 
         <TextView
             android:id="@+id/password_field"
@@ -79,7 +81,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPassword" />
+            android:hint="@string/prompt_password"
+            android:inputType="textPassword"
+            android:minHeight="48dp" />
 
         <Button
             android:id="@+id/Login_button"

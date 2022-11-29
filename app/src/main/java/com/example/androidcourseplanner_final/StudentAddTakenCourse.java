@@ -10,6 +10,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.androidcourseplanner_final.databinding.StudentAddTakenCourseBinding;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class StudentAddTakenCourse extends Fragment {
     private StudentAddTakenCourseBinding binding;
@@ -34,6 +36,7 @@ public class StudentAddTakenCourse extends Fragment {
                         .navigate(R.id.action_StudentAddTakenCourse_to_StudentCoursesTaken);
             }
         });
+
     }
 
     @Override

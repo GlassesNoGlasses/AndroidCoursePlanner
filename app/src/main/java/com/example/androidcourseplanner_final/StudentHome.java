@@ -14,6 +14,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.androidcourseplanner_final.databinding.StudentHomeBinding;
 
+import Backend.Admin;
+import Backend.GetProfileCallback;
+import Backend.Login;
+import Backend.Logout;
+import Backend.Student;
+
 public class StudentHome extends Fragment {
 
     private StudentHomeBinding binding;
@@ -32,29 +38,27 @@ public class StudentHome extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Login.getProfile(new GetProfileCallback() {
+            @Override
+            public void onStudent(Student student) {
+                binding.studentText.setText(student.getId());
+            }
+
+            @Override
+            public void onAdmin(Admin admin) {
+
+            }
+        });
+
         binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Logout.signOut();
                 NavHostFragment.findNavController(StudentHome.this)
                         .navigate(R.id.action_StudentHome_to_Login);
             }
         });
 
-        binding.coursesTakenButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(StudentHome.this)
-                        .navigate(R.id.action_StudentHome_to_StudentCoursesTaken);
-            }
-        });
-
-        binding.createPlanButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(StudentHome.this)
-                        .navigate(R.id.action_StudentHome_to_StudentPlanCreator);
-            }
-        });
     }
 
     @Override

@@ -4,5 +4,6 @@ import java.util.List;
 
 //can be used for some tricky stuff sometimes
 public interface GetProfileCallback {
-    void onCallback(Profile profile);
+    void onStudent(Student student);
+    void onAdmin(Admin admin);
 }
