@@ -1,0 +1,27 @@
+Who: Neil
+
+What you did: Worked more on firebase user authentication; further tested login, signin, changes in user information.
+
+What you are planning on doing: Further test firebase user authentication (signup more accounts); work on how to retrieve data from user input.
+
+Obstructions: None so far; UI in near future.
+
+
+
+Who: Ethan
+
+What you did: Painstaking debugging, program broken
+
+What you are planning on doing: fix program :|
+
+Obstructions: broken program
+
+
+
+Who: Austin
+
+What you did: Learned more about fragments and added activities and fragments to integrate into the backend.
+
+What you are planning on doing: Help figure out broken program with activities and fragments
+
+Obstructions:N/A
