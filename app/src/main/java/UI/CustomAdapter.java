@@ -17,9 +17,11 @@ import Backend.GetCoursesCallback;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
     private Context context;
+    private int itemCount;
 
-    public CustomAdapter(Context context) {
+    public CustomAdapter(Context context, int itemCount) {
         this.context = context;
+        this.itemCount = itemCount;
     }
 
     @NonNull
@@ -41,7 +43,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 10;
+        return itemCount;
         //TODO Find a way to return the value of the size of the list, perhaps through navigation arguments
     }
 }

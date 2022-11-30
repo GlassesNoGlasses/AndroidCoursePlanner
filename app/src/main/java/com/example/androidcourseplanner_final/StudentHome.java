@@ -15,9 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.example.androidcourseplanner_final.databinding.StudentHomeBinding;
 
 import Backend.GetProfileCallback;
-import Backend.Login;
 import Backend.LoginModel;
-import Backend.LoginPresenter;
 import Backend.Logout;
 import Backend.Profile;
 import Backend.Student;

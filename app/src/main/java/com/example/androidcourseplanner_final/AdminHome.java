@@ -16,6 +16,8 @@ import com.example.androidcourseplanner_final.databinding.AdminHomeBinding;
 import java.util.List;
 
 import Backend.Course;
+import Backend.CourseManager;
+import Backend.GetCoursesCallback;
 import Backend.Logout;
 import UI.CustomAdapter;
 
@@ -34,18 +36,23 @@ public class AdminHome extends Fragment {
         return binding.getRoot();
     }
 
-    private void displayItems() {
+    private void displayItems(int itemCount) {
         recyclerView = binding.courseListView;
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
-        customAdapter = new CustomAdapter(getContext());
+        customAdapter = new CustomAdapter(getContext(), itemCount);
         recyclerView.setAdapter(customAdapter);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        displayItems();
+        CourseManager.getInstance().getCourses(new GetCoursesCallback() {
+            @Override
+            public void onCallback(List<Course> courses) {
+                displayItems(courses.size());
+            }
+        });
 
         binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
