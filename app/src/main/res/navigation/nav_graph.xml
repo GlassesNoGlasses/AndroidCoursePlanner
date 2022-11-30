@@ -43,6 +43,10 @@
         <action
             android:id="@+id/action_Signup_to_Login"
             app:destination="@id/Login" />
+        <action
+            android:id="@+id/action_AdminHome_to_AdminCourseEdit"
+            app:destination="@+id/AdminCourseEdit"
+            />
 
     </fragment>
     <fragment
@@ -70,7 +74,17 @@
             android:id="@+id/action_AdminCourseCreation_to_AdminHome"
             app:destination="@id/AdminHome" />
     </fragment>
+    <fragment
+        android:id="@+id/AdminCourseEdit"
+        android:name="com.example.androidcourseplanner_final.AdminCourseEdit"
+        android:label="Admin Course Edit"
+        tools:layout="@layout/admin_course_edit">
 
+        <action
+            android:id="@+id/action_AdminCourseEdit_to_AdminHome"
+            app:destination="@id/AdminHome" />
+
+    </fragment>
     <fragment
         android:id="@+id/StudentCoursesTaken"
         android:name="com.example.androidcourseplanner_final.StudentCoursesTaken"

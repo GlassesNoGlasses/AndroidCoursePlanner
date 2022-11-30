@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +24,7 @@ import UI.CustomAdapter;
 
 public class AdminHome extends Fragment {
     private AdminHomeBinding binding;
+    private MainActivity view;
     RecyclerView recyclerView;
     CustomAdapter customAdapter;
 
@@ -31,7 +33,7 @@ public class AdminHome extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
+        view = new MainActivity();
         binding = com.example.androidcourseplanner_final.databinding.AdminHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -40,7 +42,7 @@ public class AdminHome extends Fragment {
         recyclerView = binding.courseListView;
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
-        customAdapter = new CustomAdapter(getContext(), itemCount);
+        customAdapter = new CustomAdapter(getContext(), itemCount, this);
         recyclerView.setAdapter(customAdapter);
     }
 
@@ -69,6 +71,12 @@ public class AdminHome extends Fragment {
                         .navigate(R.id.action_AdminHome_to_AdminCourseCreation);
             }
         });
+    }
+
+    public void toEditCourses(String coursecode) {
+        view.setCourseCode(coursecode);
+        NavHostFragment.findNavController(AdminHome.this)
+                .navigate(R.id.action_AdminHome_to_AdminCourseEdit);
     }
 
     @Override
