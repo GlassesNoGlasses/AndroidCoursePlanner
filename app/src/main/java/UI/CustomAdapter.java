@@ -1,6 +1,8 @@
 package UI;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,6 +54,22 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
                     @Override
                     public void onClick(View view) {
                         parentView.toEditCourses(holder.course_code.getText().toString());
+                    }
+                });
+                holder.delete_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+
+                        builder.setMessage("Are you sure?").setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Delete the course here
+                            }
+                        }).setNegativeButton("Cancel", null);
+
+                        AlertDialog alert = builder.create();
+                        alert.show();
                     }
                 });
             }
