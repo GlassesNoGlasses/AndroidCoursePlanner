@@ -17,6 +17,7 @@ import java.util.List;
 
 import Backend.Course;
 import Backend.CourseManager;
+import Backend.GetCourseCallback;
 import Backend.GetCoursesCallback;
 import Backend.LoginModel;
 import Backend.Session;
@@ -41,13 +42,12 @@ public class AdminCourseEdit extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        CourseManager.getInstance().getCourse(new GetCoursesCallback() {
+        CourseManager.getInstance().getCourse(new GetCourseCallback() {
             @Override
-            public void onCallback(List<Course> courses) {
-                Course currentCourse = courses.get(0);
-                binding.courseCodeEntry.setText(currentCourse.getCourseCode());
-                binding.courseNameEntry.setText(currentCourse.getName());
-                setSessions(currentCourse.getSessions());
+            public void onCallback(Course course) {
+                binding.courseCodeEntry.setText(course.getCourseCode());
+                binding.courseNameEntry.setText(course.getName());
+                setSessions(course.getSessions());
             }
         }, courseCode);
 
@@ -61,10 +61,10 @@ public class AdminCourseEdit extends Fragment {
         binding.editCourseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String courseCode = binding.courseCodeEntry.getText().toString();
-                String courseName = binding.courseNameEntry.getText().toString();
+                String newCourseCode = binding.courseCodeEntry.getText().toString();
+                String newCourseName = binding.courseNameEntry.getText().toString();
 
-                if (courseCode.equals("") || courseName.equals("")) {
+                if (newCourseCode.equals("") || newCourseName.equals("")) {
                     Toast.makeText(getContext(),
                             "Fill in empty name or course code", Toast.LENGTH_SHORT).show();
                     return;
@@ -77,25 +77,61 @@ public class AdminCourseEdit extends Fragment {
                 }
                 //TODO check if prerequisites are empty
 
-                Course course = new Course(courseCode, courseName);
+                Course newCourse = new Course(newCourseCode, newCourseName);
 
                 if (binding.fallCheckBox.isChecked())
-                    course.addSession(Session.Fall);
+                    newCourse.addSession(Session.Fall);
                 if (binding.summerCheckBox.isChecked())
-                    course.addSession(Session.Summer);
+                    newCourse.addSession(Session.Summer);
                 if (binding.winterCheckBox.isChecked())
-                    course.addSession(Session.Winter);
+                    newCourse.addSession(Session.Winter);
 
                 //TODO add prerequisites from dropdown
 
+                //check if they are changing course code to one that exists elsewhere
+                CourseManager cm = CourseManager.getInstance();
 
-                CourseManager.getInstance().addCourse(course);
+                cm.getCourse(new GetCourseCallback() {
+                    @Override
+                    public void onCallback(Course course) {
+                        Log.e("Edit", newCourseCode + " : " + course.getCourseCode());
+                        //if course code does not change, you're done!
+                        if (newCourseCode.equals(course.getCourseCode())) {
+                            cm.editCourse(course, newCourse);
 
-                NavHostFragment.findNavController(AdminCourseEdit.this)
-                        .navigate(R.id.action_AdminCourseCreation_to_AdminHome);
+                            NavHostFragment.findNavController(AdminCourseEdit.this)
+                                    .navigate(R.id.action_AdminCourseEdit_to_AdminHome);
 
-                Toast.makeText(getContext(),
-                        courseCode + " created successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),
+                                    newCourseCode + " edited successfully", Toast.LENGTH_SHORT).show();
+
+                            return;
+                        }
+
+                        //otherwise, check the database
+                        cm.getCourses(new GetCoursesCallback() {
+                            @Override
+                            public void onCallback(List<Course> courses) {
+                                for (Course c : courses)
+                                    if (c.getCourseCode().equals(newCourseCode)) {
+                                        Toast.makeText(getContext(),
+                                                "Course: " + newCourseCode + " already exists",
+                                                Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+
+                                //course code does not already exist
+                                cm.editCourse(course, newCourse);
+
+                                NavHostFragment.findNavController(AdminCourseEdit.this)
+                                        .navigate(R.id.action_AdminCourseEdit_to_AdminHome);
+
+                                Toast.makeText(getContext(),
+                                        newCourseCode + " edited successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }, courseCode);
             }
         });
     }

@@ -64,21 +64,16 @@ public final class CourseManager {
         });
     }
 
-    public void getCourse(GetCoursesCallback callback, String code) {
+    public void getCourse(GetCourseCallback callback, String code) {
         if(code == null) {
             Log.d("Course Get:", "Failed to get course");
             return;
         }
-        courses.clear();
-        DatabaseReference coursesRefChild = courseRef.child(code);
 
-        coursesRefChild.addListenerForSingleValueEvent(new ValueEventListener() {
+        courseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                courses.add(snapshot.getValue(Course.class));
-                callback.onCallback(courses);
-
-                callback.onCallback(courses);
+                callback.onCallback(snapshot.child(code).getValue(Course.class));
             }
 
             @Override
@@ -88,16 +83,136 @@ public final class CourseManager {
         });
     }
 
-
     public void addCourse(Course course) {
         courseRef.child(course.courseCode).setValue(course);
     }
+
+    //TODO test this method after adding course deleting
     public void deleteCourse(Course course) {
+        //remove course from database
         courseRef.child(course.courseCode).removeValue();
+
+        //remove instances of the courseCode in courses
+        courseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //for each course
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    //for each prerequisite in the course
+                    for (DataSnapshot pre : child.child("prerequisites").getChildren()) {
+                        //if it contains the course code, remove the course code
+                        if (pre.getValue(String.class).equals(course.courseCode))
+                            courseRef.child(child.getKey()).child("prerequisites")
+                                    .child(pre.getKey()).removeValue();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("CourseManager", "deleteCourse() courses failed");
+            }
+        });
+
+        DatabaseReference studentsRef = FirebaseDatabase.getInstance().getReference()
+                .child("Users").child("Students");
+
+        //remove instances of the courseCode in students
+        studentsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //for each student
+                for (DataSnapshot student : snapshot.getChildren()) {
+                    //for each taken course
+                    for (DataSnapshot taken : student.child("takenCourses").getChildren()) {
+                        //if it contains the course code, remove the course code
+                        if (taken.getValue(String.class).equals(course.courseCode))
+                            studentsRef.child(student.getKey()).child("takenCourses")
+                                    .child(taken.getKey()).removeValue();
+                    }
+
+                    //for each planned course
+                    for (DataSnapshot planned : student.child("plannedCourses").getChildren()) {
+                        //if it contains the course code, remove the course code
+                        if (planned.getValue(String.class).equals(course.courseCode))
+                            studentsRef.child(student.getKey()).child("plannedCourses")
+                                    .child(planned.getKey()).removeValue();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("CourseManager", "deleteCourse() students failed");
+            }
+        });
     }
+
+    //TODO test this method after adding course editing
     public void editCourse(Course original, Course edited) {
-        deleteCourse(original);
+        //remove course from database
+        courseRef.child(original.courseCode).removeValue();
+
+        //add course to database
         addCourse(edited);
+
+        //if course code is not changed, you're done!
+        if (original.courseCode.equals(edited.courseCode)) return;
+
+        //otherwise, update instances of the courseCode in courses
+        courseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //for each course
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    //for each prerequisite in the course
+                    for (DataSnapshot pre : child.child("prerequisites").getChildren()) {
+                        //if it contains the course code, remove the course code
+                        if (pre.getValue(String.class).equals(original.courseCode))
+                            courseRef.child(child.getKey()).child("prerequisites")
+                                    .child(pre.getKey()).setValue(edited.courseCode);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("CourseManager", "deleteCourse() courses failed");
+            }
+        });
+
+        DatabaseReference studentsRef = FirebaseDatabase.getInstance().getReference()
+                .child("Users").child("Students");
+
+        //and update instances of the courseCode in students
+        studentsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //for each student
+                for (DataSnapshot student : snapshot.getChildren()) {
+                    //for each taken course
+                    for (DataSnapshot taken : student.child("takenCourses").getChildren()) {
+                        //if it contains the course code, remove the course code
+                        if (taken.getValue(String.class).equals(original.courseCode))
+                            studentsRef.child(student.getKey()).child("takenCourses")
+                                    .child(taken.getKey()).setValue(edited.courseCode);
+                    }
+
+                    //for each planned course
+                    for (DataSnapshot planned : student.child("plannedCourses").getChildren()) {
+                        //if it contains the course code, remove the course code
+                        if (planned.getValue(String.class).equals(original.courseCode))
+                            studentsRef.child(student.getKey()).child("plannedCourses")
+                                    .child(planned.getKey()).setValue(edited.courseCode);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("CourseManager", "deleteCourse() students failed");
+            }
+        });
     }
 
 

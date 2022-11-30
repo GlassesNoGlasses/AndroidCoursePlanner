@@ -13,8 +13,11 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.androidcourseplanner_final.databinding.AdminCourseCreationBinding;
 
 
+import java.util.List;
+
 import Backend.Course;
 import Backend.CourseManager;
+import Backend.GetCoursesCallback;
 import Backend.Session;
 
 public class AdminCourseCreation extends Fragment {
@@ -58,6 +61,7 @@ public class AdminCourseCreation extends Fragment {
                             "Fill in empty sessions", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 //TODO check if prerequisites are empty
 
                 Course course = new Course(courseCode, courseName);
@@ -71,13 +75,30 @@ public class AdminCourseCreation extends Fragment {
 
                 //TODO add prerequisites from dropdown
 
-                CourseManager.getInstance().addCourse(course);
 
-                NavHostFragment.findNavController(AdminCourseCreation.this)
-                        .navigate(R.id.action_AdminCourseCreation_to_AdminHome);
+                //check if the courseCode already exists
+                CourseManager.getInstance().getCourses(new GetCoursesCallback() {
+                    @Override
+                    public void onCallback(List<Course> courses) {
+                        for (Course c : courses)
+                            if (c.getCourseCode().equals(courseCode)) {
+                                Toast.makeText(getContext(),
+                                        "Course: " + courseCode + " already exists",
+                                        Toast.LENGTH_SHORT).show();
+                                return;
+                            }
 
-                Toast.makeText(getContext(),
-                        courseCode + " created successfully", Toast.LENGTH_SHORT).show();
+                        //course code does not already exist
+                        CourseManager.getInstance().addCourse(course);
+
+                        NavHostFragment.findNavController(AdminCourseCreation.this)
+                                .navigate(R.id.action_AdminCourseCreation_to_AdminHome);
+
+                        Toast.makeText(getContext(),
+                                courseCode + " created successfully", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
     }
