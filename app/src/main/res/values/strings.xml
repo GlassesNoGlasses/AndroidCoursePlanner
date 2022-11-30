@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">AndroidCoursePlanner_final</string>
-    <string name="title_activity_login">Login</string>
+    <string name="title_activity_login">Log In</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
