@@ -48,8 +48,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/course_list_view"
-        android:layout_width="409dp"
-        android:layout_height="631dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="1dp"
         app:layout_constraintBottom_toTopOf="@+id/create_new_course_button"
         app:layout_constraintEnd_toEndOf="parent"

@@ -27,7 +27,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new CustomViewHolder(LayoutInflater.from(context).inflate(R.layout.single_course, parent, false));
+        return new CustomViewHolder(LayoutInflater.from(context).inflate(
+                R.layout.single_course, parent, false));
     }
 
     @Override
@@ -44,6 +45,5 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
     @Override
     public int getItemCount() {
         return itemCount;
-        //TODO Find a way to return the value of the size of the list, perhaps through navigation arguments
     }
 }
