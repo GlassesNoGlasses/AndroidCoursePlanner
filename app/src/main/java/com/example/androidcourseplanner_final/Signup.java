@@ -55,6 +55,8 @@ public class Signup extends Fragment {
                 Backend.Login.signUp(username, email, password, new AuthenticationCallback() {
                     @Override
                     public void onSuccess() {
+                        Toast.makeText(getContext(),
+                                "Account created! Welcome", Toast.LENGTH_SHORT).show();
                         NavHostFragment.findNavController(Signup.this)
                                 .navigate(R.id.action_Signup_to_Login);
                     }
@@ -62,7 +64,7 @@ public class Signup extends Fragment {
                     @Override
                     public void onFailure() {
                         Toast.makeText(getContext(),
-                                "Sign In Failed", Toast.LENGTH_SHORT).show();
+                                "Signup Failed", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

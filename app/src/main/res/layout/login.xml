@@ -48,11 +48,11 @@
     <LinearLayout
         android:layout_width="268dp"
         android:layout_height="190dp"
+        android:layout_alignTop="@+id/login_title"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="75dp"
-        android:layout_marginTop="381dp"
+        android:layout_marginTop="209dp"
         android:orientation="vertical">
 
         <TextView
@@ -102,6 +102,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="100dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="121dp"
         android:text="@string/noaccount"
@@ -111,11 +112,13 @@
         android:id="@+id/Signup_link"
         android:layout_width="79dp"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@id/noaccount"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="169dp"
-        android:layout_marginBottom="93dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginBottom="58dp"
         android:text="@string/signup_link"
         android:textColor="@color/link_blue"
         android:textSize="20sp"

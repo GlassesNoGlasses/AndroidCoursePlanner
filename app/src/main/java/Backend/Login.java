@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -23,19 +24,22 @@ public abstract class Login {
 
     //Checks if the username and password on signup are valid
     public static String checkInfo(String username, String password, String email) {
+        String infoCheck = null;
         if (username.length() < 2)
-                return "Username has to be at least 2 characters.";
-        else if (!email.contains("@")) return "Invalid Email";
+            infoCheck = new String("Username has to be at least 2 characters.");
+        else if (!(email.contains("@") && email.contains(".")) || email.length() < 6)
+            infoCheck = new String("Invalid Email");
+        
         else if (password.length() < 6)
-                return "Password has to be at least 6 characters.";
+                infoCheck = new String("Password has to be at least 6 characters.");
 
 //        Check for special characters we don't want
         Pattern regex = Pattern.compile("[$&+,:;=\\\\?#|/'<>.^*()%!-]");
         if (regex.matcher(username).find() || regex.matcher(password).find()) {
-            return "Invalid Character Found.";
+            infoCheck = new String("Invalid Character Found.");
         }
         //returns null on success (no errors found)
-        return null;
+        return infoCheck;
     }
 
     //automatically checks email by firebase
