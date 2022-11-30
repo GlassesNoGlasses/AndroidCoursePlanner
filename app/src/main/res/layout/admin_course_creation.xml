@@ -134,7 +134,7 @@
         app:layout_constraintTop_toBottomOf="@+id/prerequisite_entry" />
 
     <TextView
-        android:id="@+id/create_course_text"
+        android:id="@+id/edit_course_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

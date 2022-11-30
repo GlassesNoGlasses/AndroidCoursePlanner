@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.androidcourseplanner_final.databinding.AdminCourseCreationBinding;
 
+
 import Backend.Course;
 import Backend.CourseManager;
 import Backend.Session;
@@ -69,7 +70,6 @@ public class AdminCourseCreation extends Fragment {
                     course.addSession(Session.Winter);
 
                 //TODO add prerequisites from dropdown
-
 
                 CourseManager.getInstance().addCourse(course);
 

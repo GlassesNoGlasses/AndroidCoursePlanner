@@ -127,19 +127,19 @@
         android:id="@+id/edit_course_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit Course"
+        android:text="@string/edit_course"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/prerequisite_entry" />
 
     <TextView
-        android:id="@+id/create_course_text"
+        android:id="@+id/edit_course_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
-        android:text="@string/create_course"
+        android:text="@string/edit_course"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/tool_bar"
