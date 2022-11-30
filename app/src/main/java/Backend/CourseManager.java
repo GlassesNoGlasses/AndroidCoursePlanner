@@ -64,6 +64,31 @@ public final class CourseManager {
         });
     }
 
+    public void getCourse(GetCoursesCallback callback, String code) {
+        if(code == null) {
+            Log.d("Course Get:", "Failed to get course");
+            return;
+        }
+        courses.clear();
+        DatabaseReference coursesRefChild = courseRef.child(code);
+
+        coursesRefChild.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                courses.add(snapshot.getValue(Course.class));
+                callback.onCallback(courses);
+
+                callback.onCallback(courses);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("CourseManager", "getCourse() failed");
+            }
+        });
+    }
+
+
     public void addCourse(Course course) {
         courseRef.child(course.courseCode).setValue(course);
     }
@@ -74,6 +99,7 @@ public final class CourseManager {
         deleteCourse(original);
         addCourse(edited);
     }
+
 
     //TODO the big one, the whole reason behind the app
     public static void planTimeline(Student s) {

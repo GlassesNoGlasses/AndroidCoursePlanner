@@ -13,22 +13,30 @@ import com.example.androidcourseplanner_final.databinding.LoginBinding;
 
 import androidx.fragment.app.Fragment;
 
-import Backend.Admin;
 import Backend.GetProfileCallback;
 import Backend.AuthenticationCallback;
+import Backend.LoginModel;
+import Backend.LoginPresenter;
+import Backend.Profile;
 import Backend.Student;
+import Backend.UserInfoChecker;
 
 public class Login extends Fragment {
     private LoginBinding binding;
+    private LoginPresenter presenter;
 
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
+        presenter = new LoginPresenter(this, LoginModel.getInstance());
         binding = com.example.androidcourseplanner_final.databinding.LoginBinding.inflate(inflater, container, false);
         return binding.getRoot();
+    }
+
+    public void generateMessage(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -40,16 +48,15 @@ public class Login extends Fragment {
                 String email = binding.Email.getText().toString();
                 String password = binding.Password.getText().toString();
 
-                if (email.equals("") || password.equals("")) {
-                    Toast.makeText(getContext(),
-                            "Fill in empty fields", Toast.LENGTH_SHORT).show();
+                if(UserInfoChecker.checkEmail(email) != null || UserInfoChecker.checkPassword(password) != null) {
+                    generateMessage("Missing required information");
                     return;
                 }
 
-                Backend.Login.signIn(email, password, new AuthenticationCallback() {
+                presenter.signIn(email, password, new AuthenticationCallback() {
                     @Override
                     public void onSuccess() {
-                        Backend.Login.getProfile(new GetProfileCallback() {
+                        LoginModel.getInstance().getProfile(new GetProfileCallback() {
                             @Override
                             public void onStudent(Student student) {
                                 NavHostFragment.findNavController(Login.this)
@@ -57,7 +64,7 @@ public class Login extends Fragment {
                             }
 
                             @Override
-                            public void onAdmin(Admin admin) {
+                            public void onAdmin(Profile admin) {
                                 NavHostFragment.findNavController(Login.this)
                                         .navigate(R.id.action_Login_to_AdminHome);
                             }
@@ -66,8 +73,7 @@ public class Login extends Fragment {
 
                     @Override
                     public void onFailure() {
-                        Toast.makeText(getContext(),
-                                "Sign In Failed", Toast.LENGTH_SHORT).show();
+                        generateMessage("Invalid Login Information");
                     }
                 });
             }
