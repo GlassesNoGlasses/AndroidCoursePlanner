@@ -73,10 +73,15 @@ public class AdminHome extends Fragment {
         });
     }
 
-    public void toEditCourses(String coursecode) {
-        view.setCourseCode(coursecode);
+    public void toEditCourses(String courseCode) {
+        view.setCourseCode(courseCode);
         NavHostFragment.findNavController(AdminHome.this)
                 .navigate(R.id.action_AdminHome_to_AdminCourseEdit);
+    }
+
+    public void reload() {
+        NavHostFragment.findNavController(AdminHome.this)
+                .navigate(R.id.action_AdminHome_self);
     }
 
     @Override

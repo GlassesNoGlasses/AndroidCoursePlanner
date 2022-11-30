@@ -61,10 +61,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder> {
                     public void onClick(View view) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
 
-                        builder.setMessage("Are you sure?").setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                        builder.setMessage("Are you sure you want to delete " +
+                                courses.get(holder.getAdapterPosition()).getCourseCode() + "?")
+                                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                //Delete the course here
+                                CourseManager.getInstance().deleteCourse(
+                                        courses.get(holder.getAdapterPosition()));
+                                parentView.reload();
                             }
                         }).setNegativeButton("Cancel", null);
 
