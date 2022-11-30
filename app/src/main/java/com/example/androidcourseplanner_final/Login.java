@@ -13,9 +13,9 @@ import com.example.androidcourseplanner_final.databinding.LoginBinding;
 
 import androidx.fragment.app.Fragment;
 
-import Backend.Admin;
 import Backend.GetProfileCallback;
 import Backend.AuthenticationCallback;
+import Backend.Profile;
 import Backend.Student;
 
 public class Login extends Fragment {
@@ -57,7 +57,7 @@ public class Login extends Fragment {
                             }
 
                             @Override
-                            public void onAdmin(Admin admin) {
+                            public void onAdmin(Profile admin) {
                                 NavHostFragment.findNavController(Login.this)
                                         .navigate(R.id.action_Login_to_AdminHome);
                             }

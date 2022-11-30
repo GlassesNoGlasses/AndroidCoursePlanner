@@ -2,14 +2,11 @@ package com.example.androidcourseplanner_final;
 
 import android.os.Bundle;
 
-import com.example.androidcourseplanner_final.R;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.example.androidcourseplanner_final.databinding.LoginBinding;
 import com.example.androidcourseplanner_final.databinding.MainActivityBinding;
 
 public class MainActivity extends AppCompatActivity {

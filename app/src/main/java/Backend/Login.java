@@ -100,7 +100,7 @@ public abstract class Login {
                 if (snapshot.child("Students").hasChild(id)) {
                     callback.onStudent(snapshot.child("Students").child(id).getValue(Student.class));
                 } else if (snapshot.child("Admins").hasChild(id)) {
-                    callback.onAdmin(snapshot.child("Admins").child(id).getValue(Admin.class));
+                    callback.onAdmin(snapshot.child("Admins").child(id).getValue(Profile.class));
                 }
             }
 

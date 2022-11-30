@@ -1,6 +1,6 @@
 package Backend;
 
-public abstract class Profile {
+public class Profile {
     String id;
 
     public String getId() {
@@ -9,6 +9,4 @@ public abstract class Profile {
     public void setId (String id) {
         this.id = id;
     }
-
-    abstract void generateView();
 }

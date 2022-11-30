@@ -14,10 +14,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.androidcourseplanner_final.databinding.StudentHomeBinding;
 
-import Backend.Admin;
 import Backend.GetProfileCallback;
 import Backend.Login;
 import Backend.Logout;
+import Backend.Profile;
 import Backend.Student;
 
 public class StudentHome extends Fragment {
@@ -45,7 +45,7 @@ public class StudentHome extends Fragment {
             }
 
             @Override
-            public void onAdmin(Admin admin) {
+            public void onAdmin(Profile admin) {
 
             }
         });

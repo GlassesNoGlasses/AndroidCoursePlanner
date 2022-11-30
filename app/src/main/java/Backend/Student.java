@@ -51,9 +51,4 @@ public class Student extends Profile {
     public void removePlannedCourse(Course course) {
         plannedCourses.remove(course.courseCode);
     }
-
-    @Override
-    void generateView() {
-
-    }
 }
