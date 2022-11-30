@@ -11,8 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.androidcourseplanner_final.databinding.AdminCourseCreationBinding;
-import com.example.androidcourseplanner_final.databinding.AdminHomeBinding;
-import com.example.androidcourseplanner_final.databinding.LoginBinding;
 
 import Backend.Course;
 import Backend.CourseManager;

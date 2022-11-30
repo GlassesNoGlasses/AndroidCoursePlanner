@@ -8,13 +8,21 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidcourseplanner_final.databinding.AdminHomeBinding;
 
+import java.util.List;
+
+import Backend.Course;
 import Backend.Logout;
+import UI.CustomAdapter;
 
 public class AdminHome extends Fragment {
     private AdminHomeBinding binding;
+    RecyclerView recyclerView;
+    CustomAdapter customAdapter;
 
     @Override
     public View onCreateView(
@@ -26,8 +34,18 @@ public class AdminHome extends Fragment {
         return binding.getRoot();
     }
 
+    private void displayItems() {
+        recyclerView = binding.courseListView;
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
+        customAdapter = new CustomAdapter(getContext());
+        recyclerView.setAdapter(customAdapter);
+    }
+
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        displayItems();
 
         binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
