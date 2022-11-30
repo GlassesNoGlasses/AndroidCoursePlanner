@@ -16,6 +16,8 @@ import com.example.androidcourseplanner_final.databinding.StudentHomeBinding;
 
 import Backend.GetProfileCallback;
 import Backend.Login;
+import Backend.LoginModel;
+import Backend.LoginPresenter;
 import Backend.Logout;
 import Backend.Profile;
 import Backend.Student;
@@ -38,7 +40,7 @@ public class StudentHome extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Login.getProfile(new GetProfileCallback() {
+        LoginModel.getInstance().getProfile(new GetProfileCallback() {
             @Override
             public void onStudent(Student student) {
                 binding.studentText.setText(student.getId());
