@@ -13,6 +13,12 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.androidcourseplanner_final.databinding.AdminCourseCreationBinding;
 
+import androidx.appcompat.app.AlertDialog;
+import android.content.DialogInterface;
+import android.widget.TextView;
+import android.app.Dialog;
+import java.util.ArrayList;
+
 import java.util.List;
 
 import Backend.Course;
@@ -26,6 +32,7 @@ public class AdminCourseEdit extends Fragment {
     private com.example.androidcourseplanner_final.databinding.AdminCourseEditBinding binding;
     private MainActivity view;
     private String courseCode;
+    private Course newCourse;
 
     @Override
     public View onCreateView(
@@ -48,6 +55,7 @@ public class AdminCourseEdit extends Fragment {
                 binding.courseCodeEntry.setText(course.getCourseCode());
                 binding.courseNameEntry.setText(course.getName());
                 setSessions(course.getSessions());
+                newCourse = course;
             }
         }, courseCode);
 
@@ -56,6 +64,82 @@ public class AdminCourseEdit extends Fragment {
             public void onClick(View view) {
                 NavHostFragment.findNavController(AdminCourseEdit.this)
                         .navigate(R.id.action_AdminCourseEdit_to_AdminHome);
+            }
+        });
+        binding.prerequisiteEntry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                ArrayList<Integer> courseList = new ArrayList<>();
+
+                CourseManager.getInstance().getCourses(new GetCoursesCallback() {
+                    TextView preRequisiteText = view.findViewById(R.id.prerequisite_entry);
+                    @Override
+                    public void onCallback(List<Course> courses) {
+
+                        String[] preReqArray = new String[courses.size()];
+
+                        for(int i = 0; i < courses.size(); i++){
+                            preReqArray[i] = courses.get(i).getCourseCode();
+                            if (newCourse.getPrerequisites().contains(preReqArray[i])){
+                                courseList.add(i);
+                            }
+                        }
+
+                        boolean[] selectedPrerequisites = new boolean[courses.size()];
+
+                        builder.setTitle("Select PreRequisites");
+
+                        builder.setCancelable(false);
+
+                        builder.setMultiChoiceItems(preReqArray, selectedPrerequisites, new DialogInterface.OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                                if (b) {
+                                    courseList.add(i);
+                                } else {
+                                    courseList.remove(Integer.valueOf(i));
+                                }
+                            }
+                        });
+
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                newCourse.getPrerequisites().clear();
+                                StringBuilder stringBuilder = new StringBuilder();
+                                for(int j = 0; j < courseList.size(); j++) {
+                                    stringBuilder.append(preReqArray[courseList.get(j)]);
+                                    if(j != courseList.size() - 1) {
+                                        stringBuilder.append(", ");
+                                    }
+                                }
+                                for(int l = 0; l < courseList.size(); l++) {
+                                    newCourse.addPrerequisite(preReqArray[courseList.get(l)]);
+                                }
+                                preRequisiteText.setText(stringBuilder.toString());
+                                courseList.clear();
+                            }
+                        });
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        });
+                        builder.setNeutralButton("Clear All", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                for (int j = 0; j < selectedPrerequisites.length; j++) {
+                                    selectedPrerequisites[j] = false;
+                                    courseList.clear();
+                                    preRequisiteText.setText("");
+                                }
+                            }
+                        });
+                        builder.show();
+                    }
+                });
             }
         });
         binding.editCourseButton.setOnClickListener(new View.OnClickListener() {
@@ -76,9 +160,7 @@ public class AdminCourseEdit extends Fragment {
                     return;
                 }
                 //TODO check if prerequisites are empty
-
-                Course newCourse = new Course(newCourseCode, newCourseName);
-
+                
                 if (binding.fallCheckBox.isChecked())
                     newCourse.addSession(Session.Fall);
                 if (binding.summerCheckBox.isChecked())
