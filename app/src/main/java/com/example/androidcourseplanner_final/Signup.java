@@ -65,7 +65,7 @@ public class Signup extends Fragment {
                     @Override
                     public void onFailure() {
                         Toast.makeText(getContext(),
-                                "Signup Failed", Toast.LENGTH_SHORT).show();
+                                "Existing Account Found", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

@@ -3,6 +3,7 @@ package com.example.androidcourseplanner_final;
 import static androidx.databinding.DataBindingUtil.setContentView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,17 @@ import androidx.fragment.app.Fragment;
 
 import com.example.androidcourseplanner_final.databinding.StudentHomeBinding;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import Backend.GetProfileCallback;
 import Backend.LoginModel;
 import Backend.Logout;
 import Backend.Profile;
 import Backend.Student;
+import Backend.Timeline;
+import Backend.TimelineCallback;
 
 public class StudentHome extends Fragment {
 
@@ -29,7 +36,16 @@ public class StudentHome extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
+        //Testing Timeline
+        List<String> testTimeline = new ArrayList<>();
+        testTimeline.add("TIME02");
+        Timeline.getInstance().generateTimeline(testTimeline, new TimelineCallback() {
+            @Override
+            public void onCallback(HashMap<String, List<String>> callback) {
+                Log.d("Timeline StudentHome:", String.valueOf(callback));
+            }
+        });
+        //End of Test
         binding = StudentHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
