@@ -28,6 +28,7 @@ import Backend.Session;
 
 public class AdminCourseCreation extends Fragment {
     private AdminCourseCreationBinding binding;
+    private Course newCourse;
 
     @Override
     public View onCreateView(
@@ -114,6 +115,9 @@ public class AdminCourseCreation extends Fragment {
                             }
                         });
                         builder.show();
+                        for(String s: preReqArray) {
+                            newCourse.addPrerequisite(s);
+                        }
                     }
                 });
             }
@@ -138,16 +142,18 @@ public class AdminCourseCreation extends Fragment {
 
                 //TODO check if prerequisites are empty
 
-                Course course = new Course(courseCode, courseName);
+                newCourse.setName(courseName);
+                newCourse.setCourseCode(courseCode);
 
                 if (binding.fallCheckBox.isChecked())
-                    course.addSession(Session.Fall);
+                    newCourse.addSession(Session.Fall);
                 if (binding.summerCheckBox.isChecked())
-                    course.addSession(Session.Summer);
+                    newCourse.addSession(Session.Summer);
                 if (binding.winterCheckBox.isChecked())
-                    course.addSession(Session.Winter);
+                    newCourse.addSession(Session.Winter);
 
                 //TODO add prerequisites from dropdown
+
 
 
                 //check if the courseCode already exists
@@ -163,7 +169,7 @@ public class AdminCourseCreation extends Fragment {
                             }
 
                         //course code does not already exist
-                        CourseManager.getInstance().addCourse(course);
+                        CourseManager.getInstance().addCourse(newCourse);
 
                         NavHostFragment.findNavController(AdminCourseCreation.this)
                                 .navigate(R.id.action_AdminCourseCreation_to_AdminHome);

@@ -67,8 +67,8 @@ public class Course {
         sessions.remove(session);
     }
 
-    public void addPrerequisite(Course course) {
-        prerequisites.add(course.courseCode);
+    public void addPrerequisite(String course) {
+        prerequisites.add(course);
     }
 
     public void removePrerequisite(Course course) {
