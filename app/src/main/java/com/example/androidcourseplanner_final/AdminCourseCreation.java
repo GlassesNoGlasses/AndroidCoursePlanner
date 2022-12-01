@@ -71,7 +71,7 @@ public class AdminCourseCreation extends Fragment {
 
                         boolean[] selectedPrerequisites = new boolean[courses.size()];
 
-                        builder.setTitle("Select PreRequisites");
+                        builder.setTitle("Select Prerequisites");
 
                         builder.setCancelable(false);
 

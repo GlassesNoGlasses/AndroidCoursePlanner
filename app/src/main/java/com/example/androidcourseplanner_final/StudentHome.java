@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import Backend.Course;
+import Backend.CourseManager;
+import Backend.GetCoursesCallback;
 import Backend.GetProfileCallback;
 import Backend.LoginModel;
 import Backend.LoginPresenter;

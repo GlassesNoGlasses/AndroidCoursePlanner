@@ -15,11 +15,17 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Backend.Course;
 import Backend.CourseManager;
 import Backend.GetCoursesCallback;
+import Backend.GetProfileCallback;
+import Backend.LoginModel;
+import Backend.LoginPresenter;
+import Backend.Profile;
+import Backend.Student;
 import UI.CA_student_add_course;
 import UI.CustomAdapter;
 
@@ -51,13 +57,47 @@ public class StudentAddTakenCourse extends Fragment {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
+    private boolean isEligibleToTake(Course course, Student student) {
+        //covers case where taken courses is null, checks to see if prereqs are needed
+        if (student.getTakenCourses() == null)
+            return course.getPrerequisites() == null;
+
+        //checks if course is in planned courses
+        if (student.getPlannedCourses() == null)
+            if (student.getPlannedCourses().contains(course.getCourseCode()))
+                return false;
+
+        //checks if student is missing a prerequisite
+        for (String pre : course.getPrerequisites())
+            if (!student.getTakenCourses().contains(pre))
+                return false;
+
+        return true;
+    }
+
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        CourseManager.getInstance().getCourses(new GetCoursesCallback() {
+        List<Course> eligibleCourses = new ArrayList<Course>();
+
+        LoginModel.getInstance().getProfile(new GetProfileCallback() {
             @Override
-            public void onCallback(List<Course> courses) {
-                displayItems(courses);
+            public void onStudent(Student student) {
+                CourseManager.getInstance().getCourses(new GetCoursesCallback() {
+                    @Override
+                    public void onCallback(List<Course> courses) {
+                        for (Course c : courses)
+                            if (isEligibleToTake(c, student))
+                                eligibleCourses.add(c);
+
+                        displayItems(eligibleCourses);
+                    }
+                });
+            }
+
+            @Override
+            public void onAdmin(Profile admin) {
+
             }
         });
 
@@ -77,8 +117,6 @@ public class StudentAddTakenCourse extends Fragment {
                 NavHostFragment.findNavController(StudentAddTakenCourse.this)
                         .navigate(R.id.action_StudentAddTakenCourse_to_StudentHome);
             }
-
-
         });
 
 
