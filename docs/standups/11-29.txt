@@ -1,0 +1,49 @@
+Who: Neil
+
+What you did: Refactored Login Module to Model-View-Presenter.
+
+What you are planning on doing: Help User story 6 edits; database connection to Admins.
+
+Obstructions: None
+
+
+
+
+Who: Ethan
+
+What you did: Started designing the planTimeline method, refactored code to remove redundant backend classes
+
+What you are planning on doing: Continue designing the planTimeline method, change some backend stuff to support the recyclerviews
+
+Obstructions: Jeremy finishing implementing the recyclerview
+
+
+
+Who: Morris
+
+What you did: started working on student taken/planned course view, learn about recyclerview
+
+What you are planning on doing: been assigned to finish up the admin add course functionality, will be finishing that
+
+Obstructions: implementation of recyclerview
+
+
+
+Who: Jeremy
+
+What you did: implemented recycler view for the admin home screen
+
+What you are planning on doing: Finishing admin home recycler view and begin delete implementation.
+
+Obstructions: none
+
+
+
+
+Who: Austin
+
+What you did: Started working on pre-requisite list integration
+
+What you are planning on doing: Fix pre-requisite integration bugs.
+
+Obstructions: none

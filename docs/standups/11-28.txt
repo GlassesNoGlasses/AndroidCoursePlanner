@@ -1,0 +1,37 @@
+Who: Neil
+
+What you did: Added fragments and updated nav graph for android studio project.
+
+What you are planning on doing: Finish User story 1 integration between backend and frontend. Understand how to dynamically have courses for students to view and admins to create
+
+Obstructions: None
+
+
+
+Who: Ethan
+
+What you did: Added fragments and implemented login features
+
+What you are planning on doing: CourseManager.planTimeline() method
+
+Obstructions: Nothing for now
+
+
+
+Who: Morris
+
+What you did: finished editing the xml files to create the design
+
+What you are planning on doing: start working on user story 2 
+
+Obstructins: Nothing for now
+
+
+
+Who: Austin
+
+What you did: Added unit test base functions.
+
+What you are planning on doing: Start working on user story 5.
+
+Obstructins: Nothing
