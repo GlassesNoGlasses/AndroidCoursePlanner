@@ -1,6 +1,7 @@
 package com.example.androidcourseplanner_final;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,6 @@ import com.example.androidcourseplanner_final.databinding.AdminCourseCreationBin
 import androidx.appcompat.app.AlertDialog;
 import android.content.DialogInterface;
 import java.util.ArrayList;
-import java.util.Collections;
 import android.widget.TextView;
 import android.app.Dialog;
 
@@ -79,7 +79,6 @@ public class AdminCourseCreation extends Fragment {
                             public void onClick(DialogInterface dialogInterface, int i, boolean b) {
                                 if (b) {
                                     courseList.add(i);
-                                    Collections.sort(courseList);
                                 } else {
                                     courseList.remove(Integer.valueOf(i));
                                 }
@@ -89,6 +88,7 @@ public class AdminCourseCreation extends Fragment {
                         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                newCourse.getPrerequisites().clear();
                                 StringBuilder stringBuilder = new StringBuilder();
                                 for(int j = 0; j < courseList.size(); j++) {
                                     stringBuilder.append(preReqArray[courseList.get(j)]);
@@ -96,7 +96,11 @@ public class AdminCourseCreation extends Fragment {
                                         stringBuilder.append(", ");
                                     }
                                 }
+                                for(int l = 0; l < courseList.size(); l++) {
+                                    newCourse.addPrerequisite(preReqArray[courseList.get(l)]);
+                                }
                                 preRequisiteText.setText(stringBuilder.toString());
+                                courseList.clear();
                             }
                         });
                         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -115,9 +119,6 @@ public class AdminCourseCreation extends Fragment {
                                 }
                             }
                         });
-                        for(int i = 0; i < courseList.size(); i++) {
-                            newCourse.addPrerequisite(preReqArray[courseList.get(i)]);
-                        }
                         builder.show();
                     }
                 });
