@@ -66,7 +66,7 @@ public class AdminCourseEdit extends Fragment {
                         .navigate(R.id.action_AdminCourseEdit_to_AdminHome);
             }
         });
-        binding.prerequisiteEntry.setOnClickListener(new View.OnClickListener() {
+        binding.prerequisiteEntryEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
