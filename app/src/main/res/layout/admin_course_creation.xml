@@ -108,7 +108,7 @@
         app:layout_constraintTop_toBottomOf="@+id/course_code_entry"
         app:layout_constraintVertical_bias="0.53" />
 
-    <EditText
+    <TextView
         android:id="@+id/prerequisite_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
