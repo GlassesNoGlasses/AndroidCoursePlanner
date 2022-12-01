@@ -43,4 +43,5 @@
     <string name="edit_text">Edit</string>
     <string name="delete_text">Delete</string>
     <string name="edit_course">Edit Course</string>
+    <string name="timeline">Timeline</string>
 </resources>

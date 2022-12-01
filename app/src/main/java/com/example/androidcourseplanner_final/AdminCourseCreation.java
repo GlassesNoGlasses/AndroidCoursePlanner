@@ -51,6 +51,7 @@ public class AdminCourseCreation extends Fragment {
                         .navigate(R.id.action_AdminCourseCreation_to_AdminHome);
             }
         });
+
         binding.prerequisiteEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
