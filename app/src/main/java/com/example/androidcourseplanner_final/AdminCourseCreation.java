@@ -35,7 +35,7 @@ public class AdminCourseCreation extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
+        newCourse = new Course("", "");
         binding = com.example.androidcourseplanner_final.databinding.AdminCourseCreationBinding
                 .inflate(inflater, container, false);
         return binding.getRoot();
@@ -79,6 +79,7 @@ public class AdminCourseCreation extends Fragment {
                             public void onClick(DialogInterface dialogInterface, int i, boolean b) {
                                 if (b) {
                                     courseList.add(i);
+                                    Collections.sort(courseList);
                                 } else {
                                     courseList.remove(Integer.valueOf(i));
                                 }
@@ -114,10 +115,10 @@ public class AdminCourseCreation extends Fragment {
                                 }
                             }
                         });
-                        builder.show();
-                        for(String s: preReqArray) {
-                            newCourse.addPrerequisite(s);
+                        for(int i = 0; i < courseList.size(); i++) {
+                            newCourse.addPrerequisite(preReqArray[courseList.get(i)]);
                         }
+                        builder.show();
                     }
                 });
             }
