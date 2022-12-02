@@ -44,14 +44,14 @@ public class StudentHome extends Fragment {
             Bundle savedInstanceState
     ) {
         //Testing Timeline
-        List<String> testTimeline = new ArrayList<>();
-        testTimeline.add("TIME02");
-        Timeline.getInstance().generateTimeline(testTimeline, new TimelineCallback() {
-            @Override
-            public void onCallback(HashMap<String, List<String>> callback) {
-                Log.d("Timeline StudentHome:", String.valueOf(callback));
-            }
-        });
+//        List<String> testTimeline = new ArrayList<>();
+//        testTimeline.add("TIME02");
+//        Timeline.getInstance().generateTimeline(testTimeline, new TimelineCallback() {
+//            @Override
+//            public void onCallback(HashMap<String, List<String>> callback) {
+//                Log.d("Timeline StudentHome:", String.valueOf(callback));
+//            }
+//        });
         //End of Test
         binding = StudentHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();

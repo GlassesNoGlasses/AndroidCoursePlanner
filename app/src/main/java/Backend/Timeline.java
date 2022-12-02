@@ -34,13 +34,13 @@ public final class Timeline {
     }
 
 
-    public void generateTimeline(List<String> timelineCourses, TimelineCallback callback) {
+    public void generateTimeline(Student s, TimelineCallback callback) {
 
         courseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 timelineMap.clear();
-                mapPrereqstoCode(timelineCourses, snapshot);
+                mapPrereqsToCode(s.plannedCourses, s.takenCourses, snapshot);
                 callback.onCallback(timelineMap);
             }
 
@@ -51,21 +51,24 @@ public final class Timeline {
         });
     }
 
-    public void mapPrereqstoCode(List<String> timelineCourses, DataSnapshot courses) {
-        if (timelineCourses == null || timelineCourses.isEmpty()) return;
-        String currentCourse = timelineCourses.get(0);
+    public void mapPrereqsToCode(List<String> plannedCourses, List<String> takenCourses, DataSnapshot courses) {
+        if (plannedCourses == null || plannedCourses.isEmpty()) return;
+        String currentCourse = plannedCourses.get(0);
 
-        if(currentCourse == null || timelineMap.containsKey(currentCourse)) return;
+        if(currentCourse == null || takenCourses.contains(currentCourse) || timelineMap.containsKey(currentCourse)) return;
         Course course = courses.child(currentCourse).getValue(Course.class);
 
         List<String> prereqCopy = new ArrayList<>();
         if (course.prerequisites != null) {
-            prereqCopy.addAll(course.prerequisites);
+            for(String courseCode: course.prerequisites) {
+                if(!(takenCourses.contains(courseCode) && prereqCopy.contains(courseCode)))
+                        prereqCopy.add(courseCode);
+            }
         }
         timelineMap.put(currentCourse, prereqCopy);
-        timelineCourses.remove(0);
-        mapPrereqstoCode(timelineCourses, courses);
-        mapPrereqstoCode(course.prerequisites, courses);
+        plannedCourses.remove(0);
+        mapPrereqsToCode(plannedCourses, takenCourses, courses);
+        mapPrereqsToCode(course.prerequisites, takenCourses, courses);
         return;
     }
 
