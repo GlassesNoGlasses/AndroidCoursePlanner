@@ -77,7 +77,7 @@ public class StudentHome extends Fragment {
         });
     }
 
-    private void createDialog(Student s, List<String> courseList) {
+    private void createTakenDialog(Student s, List<String> courseList) {
         String[] courseArr = new String[courseList.size()];
         for (int i = 0; i < courseArr.length; i++)
             courseArr[i] = courseList.get(i);
@@ -127,6 +127,60 @@ public class StudentHome extends Fragment {
         builder.show();
     }
 
+    private void createPlanDialog(Student s, List<String> courseList) {
+        String[] courseArr = new String[courseList.size()];
+        for (int i = 0; i < courseArr.length; i++)
+            courseArr[i] = courseList.get(i);
+
+        boolean[] isSelected = new boolean[courseArr.length];
+        List<Integer> selectedItems = new ArrayList<>();
+        List<String> plannedCourses = new ArrayList<String>();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Select Courses To Take");
+        builder.setCancelable(false);
+
+        builder.setMultiChoiceItems(courseArr, isSelected, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                if (b) {
+                    selectedItems.add(i);
+                } else {
+                    selectedItems.remove(Integer.valueOf(i));
+                }
+            }
+        });
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                for(int l = 0; l < selectedItems.size(); l++)
+                    plannedCourses.add(courseArr[selectedItems.get(l)]);
+
+                //TODO send plannedCourses and student into generate timeline and navigate fragments
+
+                selectedItems.clear();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+//        builder.setNeutralButton("Clear All", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                for (int j = 0; j < selectedPrerequisites.length; j++) {
+//                    selectedPrerequisites[j] = false;
+//                    courseList.clear();
+//                    preRequisiteText.setText("");
+//                }
+//            }
+//        });
+        builder.show();
+    }
+
     private boolean isEligibleToTake(Course course, Student student) {
         //covers case where taken courses is null, checks to see if prereqs are needed
         if (student.getTakenCourses() == null)
@@ -146,6 +200,15 @@ public class StudentHome extends Fragment {
                 return false;
 
         return true;
+    }
+
+    private boolean isEligibleToPlan(Course course, Student student) {
+        //covers when student has not taken any courses
+        if (student.getTakenCourses() == null)
+            return true;
+
+        //true if student has not taken this course, false otherwise
+        return !student.getTakenCourses().contains(course.getCourseCode());
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -187,7 +250,35 @@ public class StudentHome extends Fragment {
                                     if (isEligibleToTake(c, student))
                                         eligibleCourses.add(c.getCourseCode());
 
-                                createDialog(student, eligibleCourses);
+                                createTakenDialog(student, eligibleCourses);
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onAdmin(Profile admin) {
+
+                    }
+                });
+            }
+        });
+
+        binding.generateTimeline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LoginModel.getInstance().getProfile(new GetProfileCallback() {
+                    @Override
+                    public void onStudent(Student student) {
+                        CourseManager.getInstance().getCourses(new GetCoursesCallback() {
+                            List<String> eligibleCourses = new ArrayList<String>();
+
+                            @Override
+                            public void onCallback(List<Course> courses) {
+                                for (Course c : courses)
+                                    if (isEligibleToPlan(c, student))
+                                        eligibleCourses.add(c.getCourseCode());
+
+                                createPlanDialog(student, eligibleCourses);
                             }
                         });
                     }
