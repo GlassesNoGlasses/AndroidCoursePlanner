@@ -1,0 +1,36 @@
+Who: 
+
+What you did: Refactored Login Module to Model-View-Presenter.
+
+What you are planning on doing: 
+
+Obstructions: 
+
+
+
+Who: Ethan
+
+What you did: Assisted Jeremy with implementing recyclerview in admin home and designed ssome more of the planTimeline() method
+
+What you are planning on doing: more designing the planTimeline() method
+
+Obstructions: Nothing
+
+
+Who: Austin
+
+What you did: Finished adding pre-requisite drop down for adding and editing courses for admins.
+
+What you are planning on doing: Start filling in login unit tests using mockito.
+
+Obstructions: Nothing
+
+
+
+Who: Jeremy
+
+What you did: Polished the admin home recycler view and added alert dialog for course deletion
+
+What you are planning on doing: adding alert dialogs to both course lists in student home
+
+Obstructions: None
