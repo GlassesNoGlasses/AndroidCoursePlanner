@@ -90,17 +90,17 @@ public class AdminCourseCreation extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 newCourse.getPrerequisites().clear();
-                                StringBuilder stringBuilder = new StringBuilder();
+                                String textBox = new String();
                                 for(int j = 0; j < courseList.size(); j++) {
-                                    stringBuilder.append(preReqArray[courseList.get(j)]);
+                                    newCourse.addPrerequisite(preReqArray[courseList.get(j)]);
+
+                                    textBox += preReqArray[courseList.get(j)];
                                     if(j != courseList.size() - 1) {
-                                        stringBuilder.append(", ");
+                                        textBox += ", ";
                                     }
                                 }
-                                for(int l = 0; l < courseList.size(); l++) {
-                                    newCourse.addPrerequisite(preReqArray[courseList.get(l)]);
-                                }
-                                preRequisiteText.setText(stringBuilder.toString());
+
+                                preRequisiteText.setText(textBox);
                                 courseList.clear();
                             }
                         });
@@ -108,16 +108,6 @@ public class AdminCourseCreation extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.dismiss();
-                            }
-                        });
-                        builder.setNeutralButton("Clear All", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                for (int j = 0; j < selectedPrerequisites.length; j++) {
-                                    selectedPrerequisites[j] = false;
-                                    courseList.clear();
-                                    preRequisiteText.setText("");
-                                }
                             }
                         });
                         builder.show();
@@ -143,8 +133,6 @@ public class AdminCourseCreation extends Fragment {
                     return;
                 }
 
-                //TODO check if prerequisites are empty
-
                 newCourse.setName(courseName);
                 newCourse.setCourseCode(courseCode);
 
@@ -155,9 +143,7 @@ public class AdminCourseCreation extends Fragment {
                 if (binding.winterCheckBox.isChecked())
                     newCourse.addSession(Session.Winter);
 
-                //TODO add prerequisites from dropdown
-
-
+                //prerequisites are added from the dialog above
 
                 //check if the courseCode already exists
                 CourseManager.getInstance().getCourses(new GetCoursesCallback() {

@@ -6,6 +6,21 @@
     android:background="@color/background_color"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/prerequisite_entry2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/prerequisites"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/summer_check_box"
+        app:layout_constraintVertical_bias="0.102" />
+
     <Button
         android:id="@+id/back_button"
         android:layout_width="wrap_content"
@@ -108,21 +123,6 @@
         app:layout_constraintTop_toBottomOf="@+id/course_code_entry"
         app:layout_constraintVertical_bias="0.53" />
 
-    <EditText
-        android:id="@+id/prerequisite_entry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="@string/prerequisites"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/summer_check_box"
-        app:layout_constraintVertical_bias="0.102" />
-
     <Button
         android:id="@+id/edit_course_button"
         android:layout_width="wrap_content"
@@ -131,7 +131,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prerequisite_entry" />
+        app:layout_constraintTop_toBottomOf="@+id/prerequisite_entry2" />
 
     <TextView
         android:id="@+id/create_course_text"

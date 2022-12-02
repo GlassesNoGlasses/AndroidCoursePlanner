@@ -25,7 +25,7 @@
     <string name="winter">Winter</string>
     <string name="fall">Fall</string>
     <string name="sessions_offered">Sessions Offered:</string>
-    <string name="prerequisites">Prerequisites</string>
+    <string name="prerequisites">Click to add prerequisites</string>
     <string name="courses_taken">Courses Taken</string>
     <string name="student_text">Student</string>
     <string name="admin_text">Admin</string>

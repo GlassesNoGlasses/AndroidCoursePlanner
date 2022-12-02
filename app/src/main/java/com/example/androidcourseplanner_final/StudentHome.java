@@ -114,16 +114,6 @@ public class StudentHome extends Fragment {
                 dialogInterface.dismiss();
             }
         });
-//        builder.setNeutralButton("Clear All", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                for (int j = 0; j < selectedPrerequisites.length; j++) {
-//                    selectedPrerequisites[j] = false;
-//                    courseList.clear();
-//                    preRequisiteText.setText("");
-//                }
-//            }
-//        });
         builder.show();
     }
 
@@ -168,16 +158,6 @@ public class StudentHome extends Fragment {
                 dialogInterface.dismiss();
             }
         });
-//        builder.setNeutralButton("Clear All", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                for (int j = 0; j < selectedPrerequisites.length; j++) {
-//                    selectedPrerequisites[j] = false;
-//                    courseList.clear();
-//                    preRequisiteText.setText("");
-//                }
-//            }
-//        });
         builder.show();
     }
 
