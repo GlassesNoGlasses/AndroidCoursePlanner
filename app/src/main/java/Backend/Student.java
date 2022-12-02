@@ -9,7 +9,6 @@ import java.util.List;
 
 public class Student extends Profile {
     List<String> takenCourses;
-    List<String> plannedCourses;
 
     public Student() {
         //default constructor needed for firebase
@@ -17,7 +16,6 @@ public class Student extends Profile {
     public Student(String id) {
         this.id = id;
         takenCourses = new ArrayList<String>();
-        plannedCourses = new ArrayList<String>();
     }
 
     //getters and setters for firebase vv
@@ -28,27 +26,14 @@ public class Student extends Profile {
     public void setTakenCourses(List<String> takenCourses) {
         this.takenCourses = takenCourses;
     }
-
-    public List<String> getPlannedCourses() {
-        return plannedCourses;
-    }
-
-    public void setPlannedCourses(List<String> plannedCourses) {
-        this.plannedCourses = plannedCourses;
-    }
     //getters and setters over ^^
 
-    public void addTakenCourse(Course course) {
-        takenCourses.add(course.courseCode);
+    public void addTakenCourse(String courseCode) {
+        if (takenCourses == null) takenCourses = new ArrayList<String>();
+        takenCourses.add(courseCode);
+        LoginModel.getInstance().setStudentChanges(this);
     }
-    public void removeTakenCourse(Course course) {
-        takenCourses.remove(course.courseCode);
-    }
-
-    public void addPlannedCourse(Course course) {
-        plannedCourses.add(course.courseCode);
-    }
-    public void removePlannedCourse(Course course) {
-        plannedCourses.remove(course.courseCode);
+    public void removeTakenCourse(String courseCode) {
+        takenCourses.remove(courseCode);
     }
 }

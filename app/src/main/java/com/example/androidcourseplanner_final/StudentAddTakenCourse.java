@@ -62,11 +62,6 @@ public class StudentAddTakenCourse extends Fragment {
         if (student.getTakenCourses() == null)
             return course.getPrerequisites() == null;
 
-        //checks if course is in planned courses
-        if (student.getPlannedCourses() == null)
-            if (student.getPlannedCourses().contains(course.getCourseCode()))
-                return false;
-
         //checks if student is missing a prerequisite
         for (String pre : course.getPrerequisites())
             if (!student.getTakenCourses().contains(pre))

@@ -54,28 +54,12 @@ public class Course {
     }
     //end of getters and setters ^^
 
-    //add a session or multiple
+    //add a session
     public void addSession(Session session) {
         sessions.add(session);
     }
 
-    public void removeSession(Session session) {
-        if (!sessions.contains(session)) {
-            //TODO say no
-            return;
-        }
-        sessions.remove(session);
-    }
-
     public void addPrerequisite(String course) {
         prerequisites.add(course);
-    }
-
-    public void removePrerequisite(Course course) {
-        if (!prerequisites.contains(course.courseCode)) {
-            //TODO say no
-            return;
-        }
-        prerequisites.remove(course.courseCode);
     }
 }

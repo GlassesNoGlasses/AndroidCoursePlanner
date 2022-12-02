@@ -86,4 +86,9 @@ public final class LoginModel {
             }
         });
     }
+
+    public void setStudentChanges(Student s) {
+        usersRef.child("Students").child(auth.getCurrentUser()
+                .getUid()).setValue(s);
+    }
 }

@@ -59,9 +59,9 @@ public class AdminCourseCreation extends Fragment {
                 ArrayList<Integer> courseList = new ArrayList<>();
 
                 CourseManager.getInstance().getCourses(new GetCoursesCallback() {
-                    TextView preRequisiteText = view.findViewById(R.id.prerequisite_entry);
                     @Override
                     public void onCallback(List<Course> courses) {
+                        TextView preRequisiteText = view.findViewById(R.id.prerequisite_entry);
 
                         String[] preReqArray = new String[courses.size()];
 

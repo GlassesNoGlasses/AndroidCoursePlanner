@@ -34,13 +34,13 @@ public final class Timeline {
     }
 
 
-    public void generateTimeline(Student s, TimelineCallback callback) {
+    public void generateTimeline(Student s, List<String> plannedCourses, TimelineCallback callback) {
 
         courseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 timelineMap.clear();
-                mapPrereqsToCode(s.plannedCourses, s.takenCourses, snapshot);
+                mapPrereqsToCode(plannedCourses, s.takenCourses, snapshot);
                 callback.onCallback(timelineMap);
             }
 

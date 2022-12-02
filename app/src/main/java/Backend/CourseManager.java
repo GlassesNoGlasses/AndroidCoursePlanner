@@ -21,20 +21,6 @@ public final class CourseManager {
 
     private CourseManager() {
         courseRef = FirebaseDatabase.getInstance().getReference().child("Courses");
-
-        //TODO add something to update lists if needed in onDataChange(), if not needed delete
-//        courseRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
         courses = new ArrayList<Course>();
     }
 
@@ -130,14 +116,6 @@ public final class CourseManager {
                             studentsRef.child(student.getKey()).child("takenCourses")
                                     .child(taken.getKey()).removeValue();
                     }
-
-                    //for each planned course
-                    for (DataSnapshot planned : student.child("plannedCourses").getChildren()) {
-                        //if it contains the course code, remove the course code
-                        if (planned.getValue(String.class).equals(course.courseCode))
-                            studentsRef.child(student.getKey()).child("plannedCourses")
-                                    .child(planned.getKey()).removeValue();
-                    }
                 }
             }
 
@@ -197,14 +175,6 @@ public final class CourseManager {
                             studentsRef.child(student.getKey()).child("takenCourses")
                                     .child(taken.getKey()).setValue(edited.courseCode);
                     }
-
-                    //for each planned course
-                    for (DataSnapshot planned : student.child("plannedCourses").getChildren()) {
-                        //if it contains the course code, remove the course code
-                        if (planned.getValue(String.class).equals(original.courseCode))
-                            studentsRef.child(student.getKey()).child("plannedCourses")
-                                    .child(planned.getKey()).setValue(edited.courseCode);
-                    }
                 }
             }
 
@@ -213,12 +183,6 @@ public final class CourseManager {
                 Log.e("CourseManager", "deleteCourse() students failed");
             }
         });
-    }
-
-
-    //TODO the big one, the whole reason behind the app
-    public static void planTimeline(Student s) {
-
     }
 
 }
