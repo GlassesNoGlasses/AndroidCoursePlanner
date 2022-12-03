@@ -23,7 +23,7 @@ import java.util.Set;
 public final class Timeline {
     private static DatabaseReference courseRef = FirebaseDatabase.getInstance().getReference("Courses");
     private HashMap<String, List<String>> timelineMap;
-    private HashMap<Integer, List<String>> timeline;
+    private static HashMap<Integer, HashMap<Integer, List<String>>> timeline;
     private static Timeline instance;
 
     private Timeline() {
@@ -43,11 +43,40 @@ public final class Timeline {
         courseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int year = Calendar.getInstance().get(Calendar.YEAR) % 1000;
+                int year = Calendar.getInstance().get(Calendar.YEAR) % 1000 + 1;
                 HashMap<String, Integer> courseOfferings = new HashMap<>();
+                timeline = new HashMap<>();
+                timeline.put(100, new HashMap<>());
+                timeline.put(200, new HashMap<>());
+                timeline.put(300, new HashMap<>());
                 mapPrereqsToCode(plannedCourses, s.takenCourses, snapshot);
-                courseOfferings.putAll(generateCourseOfferings(timelineMap, snapshot));
+                Log.d("Course to Prereqs: ", String.valueOf(timelineMap));
+                Set<String> requiredCourses = timelineMap.keySet();
+
+                courseOfferings.putAll(generateCourseOfferings(timelineMap, snapshot, requiredCourses));
                 Log.d("Course to sessions: ", String.valueOf(courseOfferings));
+
+                List<String> valuesToRemove = new ArrayList<>();
+                for(String course: requiredCourses) {
+                    if(timelineMap.get(course).isEmpty()) {
+                        int offering = courseOfferings.get(course);
+                        addToTimeline(offering, year, course);
+                        courseOfferings.put(course, offering + year);
+                        valuesToRemove.add(course);
+                    }
+                }
+
+                for (String c: valuesToRemove) timelineMap.remove(c);
+                generateTimelineHelper(timelineMap, courseOfferings, year);
+
+                //IDEA
+//                Add all prereqs to the main timeline
+//                Recurse through the rest of the courses:
+//                If a course has no prerequsiites in timelineMap, add it to timeline and pop from timelineMap
+//
+
+                Log.d("CoursetosessionsUpdate:", String.valueOf(courseOfferings));
+                Log.d("TIMELINE ", String.valueOf(timeline));
                 callback.onCallback(timelineMap);
             }
 
@@ -58,16 +87,46 @@ public final class Timeline {
         });
     }
 
+    public void addToTimeline(Integer semester, Integer year, String courseCode) {
+        if(timeline.get(semester).containsKey(year)) {
+            timeline.get(semester).get(year).add(courseCode);
+        }
+        else {
+            List<String> courses = new ArrayList<>();
+            courses.add(courseCode);
+            timeline.get(semester).put(year, courses);
+        }
+    }
+
     private void generateTimelineHelper(HashMap<String, List<String>> timelineMap
             ,HashMap<String, Integer> courseOfferings, int year) {
-        int len = timelineMap.size();
-        if(timelineMap.isEmpty() || len == 0) return;
+        if(timelineMap.isEmpty()) return;
+        List<String> valuesToRemove = new ArrayList<>();
         Set<String> requiredCourses = timelineMap.keySet();
 
-        for(String code: requiredCourses) {
-            if (timelineMap.get(code).isEmpty())
-            for(String prereq: )
+        for(String currentCourse: requiredCourses) {
+            int semester = courseOfferings.get(currentCourse);
+            int semesterPlacement = semester + year;
+            for(String preReq: timelineMap.get(currentCourse)) {
+                if(timelineMap.containsKey(preReq)) {
+                    semesterPlacement = 0;
+                    break;
+                }
+                int preReqSem = courseOfferings.get(preReq);
+                if((preReqSem % 100 - semesterPlacement % 100) > 0) {
+                    semesterPlacement += (preReqSem % 100 - semesterPlacement % 100);
+                }
+                if(preReqSem >= semesterPlacement) semesterPlacement++;
+            }
+            if(semesterPlacement > 0) {
+                addToTimeline(semester, semesterPlacement-semester, currentCourse);
+                courseOfferings.put(currentCourse, semesterPlacement);;
+                valuesToRemove.add(currentCourse);
+            }
         }
+        for(String c: valuesToRemove) timelineMap.remove(c);
+        generateTimelineHelper(timelineMap, courseOfferings, year);
+
     }
 
     //Creates HashMap mapping (String) Coursecodes: (List<String>) prereqs
@@ -105,9 +164,8 @@ public final class Timeline {
 
     // maps courses to their respective sessions (prioritizing closest semester)
     private HashMap<String, Integer> generateCourseOfferings(HashMap<String,
-            List<String>> timelineMap, DataSnapshot courses) {
+            List<String>> timelineMap, DataSnapshot courses, Set<String> requiredCourses) {
         HashMap<String, Integer> courseOfferings = new HashMap<String, Integer>();
-        Set<String> requiredCourses = timelineMap.keySet();
 
         for (String course : requiredCourses) {
             Course c = courses.child(course).getValue(Course.class);
@@ -121,11 +179,11 @@ public final class Timeline {
 
         for(Session s: courseSessions) {
             switch(s) {
-                case Fall:
-                    offerings = 100;
+                case Summer:
+                     if(offerings > 200) offerings = 200;
                     break;
                 case Winter:
-                    if(offerings > 200) offerings = 200;
+                    if(offerings > 100) offerings = 100;
                     break;
             }
         }
