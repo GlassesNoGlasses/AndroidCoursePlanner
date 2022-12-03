@@ -49,6 +49,9 @@ public final class Timeline {
                 timeline.put(100, new HashMap<>());
                 timeline.put(200, new HashMap<>());
                 timeline.put(300, new HashMap<>());
+
+                if (s.takenCourses == null) s.setTakenCourses(new ArrayList<>());
+
                 mapPrereqsToCode(plannedCourses, s.takenCourses, snapshot);
                 Log.d("Course to Prereqs: ", String.valueOf(timelineMap));
                 Set<String> requiredCourses = timelineMap.keySet();
@@ -76,8 +79,8 @@ public final class Timeline {
 //
 
                 Log.d("CoursetosessionsUpdate:", String.valueOf(courseOfferings));
-                Log.d("TIMELINE ", String.valueOf(timeline));
-                callback.onCallback(timelineMap);
+//                Log.d("TIMELINE ", String.valueOf(timeline));
+                callback.onCallback(timeline);
             }
 
             @Override

@@ -51,12 +51,14 @@ public class StudentHome extends Fragment {
     ) {
         //Testing Timeline
         List<String> testTimeline = new ArrayList<>();
+        testTimeline.add("TIME01");
         testTimeline.add("LOL201");
+        testTimeline.add("WSTA01");
+        testTimeline.add("MATA37");
         Student testStudent = new Student();
-        testStudent.addTakenCourse("TIME01");
         Timeline.getInstance().generateTimeline(testStudent, testTimeline, new TimelineCallback() {
             @Override
-            public void onCallback(HashMap<String, List<String>> callback) {
+            public void onCallback(HashMap<Integer, HashMap<Integer, List<String>>> callback) {
                 Log.d("Timeline StudentHome:", String.valueOf(callback));
             }
         });
