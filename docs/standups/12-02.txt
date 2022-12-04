@@ -1,0 +1,47 @@
+Who: Neil
+
+What you did: Brainstormed about Timeline implementation; edited admins' ability to edit courses.
+
+What you are planning on doing: Finish timeline generation.
+
+Obstructions: None
+
+ 
+
+Who: Austin
+
+What you did: Added JUnit tests for presenter and getEmail.
+
+What you are planning on doing: Start helping with timeline backend.
+
+Obstructions: None
+
+ 
+
+Who: Ethan
+
+What you did: Implemented admin edit course
+
+What you are planning on doing: Helping neil with plan timeline 
+
+Obstructions: nothing
+
+ 
+
+Who: Jeremy
+
+What you did: Implemented nested recycler views for timeline UI
+
+What you are planning on doing: figuring out how to access course names using their course code + alert dialogues
+
+Obstructions: Morris finish the student home pls
+
+ 
+
+Who: Morris
+
+What you did: Implement the student home so courses show up when added to taken course list
+
+What you are planning on doing: implement the delete part
+
+Obstructions: None

@@ -1,0 +1,37 @@
+Who: Neil
+
+What you did: Updated Timeline class to generate an actual timeline data structure for front-end implementation.
+
+What you are planning on doing: Help Timeline UI to convert data into displayable info for users.
+
+Obstructions: Understanding generate timeline button from student home.
+
+ 
+
+Who: Austin
+
+What you did: Regulate standup information.
+
+What you are planning on doing: Help with Timeline UI as well. Perhasps even add some colorful UI changes, etc.
+
+Obstructions: Nothing
+
+ 
+
+Who: Jeremy
+
+What you did: Set up the view timeline page to display the generated timelines, but not with their course names yet
+
+What you are planning on doing: getting it to work with course names
+
+Obstructions: Nothing 
+
+ 
+
+Who: Morris
+
+What you did: tried implementing the delete course function but keep getting weird errors even tho it was the same as admin delete course
+
+What you are planning on doing: debugging and possibly help with generate timeline
+
+Obstructions: N/A
