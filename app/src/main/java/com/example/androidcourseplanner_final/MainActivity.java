@@ -8,11 +8,15 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.androidcourseplanner_final.databinding.MainActivityBinding;
+import java.util.List;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
     private MainActivityBinding binding;
     private static String courseCode;
+    private static HashMap<Integer, HashMap<Integer, List<String>>> timeline;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,4 +36,8 @@ public class MainActivity extends AppCompatActivity {
     public String getCourseCode() {
         return courseCode;
     }
+
+    public void setTimeline(HashMap<Integer, HashMap<Integer, List<String>>> timeline) {this.timeline = timeline;}
+
+    public HashMap<Integer, HashMap<Integer, List<String>>> getTimeline() { return this.timeline;}
 }

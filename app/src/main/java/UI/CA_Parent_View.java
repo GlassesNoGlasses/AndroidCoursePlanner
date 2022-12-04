@@ -17,9 +17,9 @@ import java.util.Set;
 
 public class CA_Parent_View extends RecyclerView.Adapter<CVH_student_plan_session> {
     private Context context;
-    private HashMap<String, List<String>> timeline;
+    private HashMap<Integer, HashMap<Integer, List<String>>> timeline;
 
-    public CA_Parent_View(Context context, HashMap<String, List<String>> timeline) {
+    public CA_Parent_View(Context context, HashMap<Integer, HashMap<Integer, List<String>>> timeline) {
         this.context = context;
         this.timeline = timeline;
     }
@@ -33,16 +33,38 @@ public class CA_Parent_View extends RecyclerView.Adapter<CVH_student_plan_sessio
 
     @Override
     public void onBindViewHolder(@NonNull CVH_student_plan_session holder, int position) {
-        Set<String> sessions = timeline.keySet();
-        List<String> orderedSessions = new ArrayList<>(sessions);
-        holder.session.setText(orderedSessions.get(position));
-        CA_Child_View childAdapter = new CA_Child_View(context, timeline.get(orderedSessions.get(position)));
-        holder.sessionCourses.setLayoutManager(new GridLayoutManager(context,1));
-        holder.sessionCourses.setAdapter(childAdapter);
+        Set<Integer> winterSessions = timeline.get(100).keySet();
+        Set<Integer> summerSessions = timeline.get(200).keySet();
+        Set<Integer> fallSessions = timeline.get(300).keySet();
+        List<Integer> ordWinterSessions = new ArrayList<>(winterSessions);
+        List<Integer> ordSummerSessions = new ArrayList<>(summerSessions);
+        List<Integer> ordFallSessions = new ArrayList<>(fallSessions);
+
+        if (position < timeline.get(100).size()) {
+            holder.session.setText("Winter 20" + ordWinterSessions.get(position));
+            CA_Child_View childAdapter = new CA_Child_View(context, timeline.get(100)
+                    .get(ordWinterSessions.get(position)));
+            holder.sessionCourses.setLayoutManager(new GridLayoutManager(context,1));
+            holder.sessionCourses.setAdapter(childAdapter);
+        }
+        else if (position < timeline.get(100).size() + timeline.get(200).size()) {
+            holder.session.setText("Summer 20" + ordSummerSessions.get(position - timeline.get(100).size() ));
+            CA_Child_View childAdapter = new CA_Child_View(context, timeline.get(200)
+                    .get(ordSummerSessions.get(position - timeline.get(100).size())));
+            holder.sessionCourses.setLayoutManager(new GridLayoutManager(context,1));
+            holder.sessionCourses.setAdapter(childAdapter);
+        }
+        else {
+            holder.session.setText("Fall 20" + ordFallSessions.get(position - (timeline.get(100).size() + timeline.get(200).size())));
+            CA_Child_View childAdapter = new CA_Child_View(context, timeline.get(300)
+                    .get(ordFallSessions.get(position - (timeline.get(100).size() + timeline.get(200).size()))));
+            holder.sessionCourses.setLayoutManager(new GridLayoutManager(context,1));
+            holder.sessionCourses.setAdapter(childAdapter);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return timeline.keySet().size();
+        return timeline.get(100).size() + timeline.get(200).size() + timeline.get(300).size();
     }
 }
