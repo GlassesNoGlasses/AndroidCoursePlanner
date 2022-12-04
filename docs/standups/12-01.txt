@@ -35,3 +35,12 @@ What you did: Contributed fixes to the pre-requisite dropdown menus for editing 
 What you are planning on doing: Finish up login ui tests
 
 Obstructions: Nothing
+
+
+Who: Morris
+
+What you did: Created the student add taken course recycler view and update student home page
+
+What you are planning on doing: implement the adding course to taken course view in student home
+
+Obstructions: None
