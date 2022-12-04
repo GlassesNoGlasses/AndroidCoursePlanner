@@ -44,13 +44,16 @@ public class StudentHome extends Fragment {
 
     private StudentHomeBinding binding;
     private MainActivity view;
+    RecyclerView recyclerView;
+    CA_student_home ca_student_home;
 
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-        binding = StudentHomeBinding.inflate(inflater, container, false);
+        view = new MainActivity();
+        binding = com.example.androidcourseplanner_final.databinding.StudentHomeBinding.inflate(inflater, container,false);
         return binding.getRoot();
     }
 
