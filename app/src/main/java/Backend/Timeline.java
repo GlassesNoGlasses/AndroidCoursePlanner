@@ -53,11 +53,9 @@ public final class Timeline {
                 if (s.takenCourses == null) s.setTakenCourses(new ArrayList<>());
 
                 mapPrereqsToCode(plannedCourses, s.takenCourses, snapshot);
-                Log.d("Course to Prereqs: ", String.valueOf(timelineMap));
                 Set<String> requiredCourses = timelineMap.keySet();
 
                 courseOfferings.putAll(generateCourseOfferings(timelineMap, snapshot, requiredCourses));
-                Log.d("Course to sessions: ", String.valueOf(courseOfferings));
 
                 List<String> valuesToRemove = new ArrayList<>();
                 for(String course: requiredCourses) {
@@ -72,14 +70,6 @@ public final class Timeline {
                 for (String c: valuesToRemove) timelineMap.remove(c);
                 generateTimelineHelper(timelineMap, courseOfferings, year);
 
-                //IDEA
-//                Add all prereqs to the main timeline
-//                Recurse through the rest of the courses:
-//                If a course has no prerequsiites in timelineMap, add it to timeline and pop from timelineMap
-//
-
-                Log.d("CoursetosessionsUpdate:", String.valueOf(courseOfferings));
-//                Log.d("TIMELINE ", String.valueOf(timeline));
                 callback.onCallback(timeline);
             }
 
@@ -116,10 +106,11 @@ public final class Timeline {
                     break;
                 }
                 int preReqSem = courseOfferings.get(preReq);
-                if((preReqSem % 100 - semesterPlacement % 100) > 0) {
-                    semesterPlacement += (preReqSem % 100 - semesterPlacement % 100);
+                int semDiff = (preReqSem % 100) - (semesterPlacement % 100);
+                if(semDiff > 0) {
+                    semesterPlacement += semDiff;
                 }
-                if(preReqSem >= semesterPlacement) semesterPlacement++;
+                if(preReqSem >= semesterPlacement && semDiff >= 0) semesterPlacement++;
             }
             if(semesterPlacement > 0) {
                 addToTimeline(semester, semesterPlacement-semester, currentCourse);
