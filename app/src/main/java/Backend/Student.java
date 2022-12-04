@@ -35,5 +35,6 @@ public class Student extends Profile {
     }
     public void removeTakenCourse(String courseCode) {
         takenCourses.remove(courseCode);
+        LoginModel.getInstance().setStudentChanges(this);
     }
 }

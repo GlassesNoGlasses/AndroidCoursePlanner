@@ -64,8 +64,9 @@
             android:id="@+id/action_StudentHome_to_StudentPlanCreator"
             app:destination="@id/StudentPlanCreator" />
         <action
-            android:id="@+id/action_StudentHome_to_StudentAddTakenCourse"
-            app:destination="@id/StudentAddTakenCourse" />
+            android:id="@+id/action_StudentHome_self"
+            app:destination="@id/StudentHome" />
+
     </fragment>
     <fragment
         android:id="@+id/AdminCourseCreation"
@@ -87,15 +88,6 @@
             android:id="@+id/action_AdminCourseEdit_to_AdminHome"
             app:destination="@id/AdminHome" />
 
-    </fragment>
-    <fragment
-        android:id="@+id/StudentAddTakenCourse"
-        android:name="com.example.androidcourseplanner_final.StudentAddTakenCourse"
-        android:label="Student Add Taken Course"
-        tools:layout="@layout/student_add_taken_course">
-        <action
-            android:id="@+id/action_StudentAddTakenCourse_to_StudentHome"
-            app:destination="@id/StudentHome" />
     </fragment>
     <fragment
         android:id="@+id/StudentPlanCreator"

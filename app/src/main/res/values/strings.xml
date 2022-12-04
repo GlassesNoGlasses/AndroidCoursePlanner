@@ -38,7 +38,7 @@
     <string name="noaccount">Don\'t have an account?</string>
     <string name="sign_up">Sign up</string>
     <string name="planned_courses">Planned Courses</string>
-    <string name="taken_courses">Taken Courses</string>
+    <string name="taken_courses">Courses You Have Taken</string>
     <string name="prompt_username">Username</string>
     <string name="edit_text">Edit</string>
     <string name="delete_text">Delete</string>

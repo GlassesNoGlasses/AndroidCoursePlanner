@@ -1,5 +1,6 @@
 package com.example.androidcourseplanner_final;
 
+import static androidx.databinding.DataBindingUtil.inflate;
 import static androidx.databinding.DataBindingUtil.setContentView;
 
 import android.content.DialogInterface;
@@ -8,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.fragment.NavHostFragment;
@@ -29,13 +29,10 @@ import Backend.CourseManager;
 import Backend.GetCoursesCallback;
 import Backend.GetProfileCallback;
 import Backend.LoginModel;
-import Backend.LoginPresenter;
 import Backend.Logout;
 import Backend.Profile;
 import Backend.Student;
-import UI.CA_student_add_course;
-import UI.CVH_student_add_course;
-import UI.CustomAdapter;
+import UI.CA_student_home;
 
 import Backend.Timeline;
 import Backend.TimelineCallback;
@@ -43,6 +40,9 @@ import Backend.TimelineCallback;
 public class StudentHome extends Fragment {
 
     private StudentHomeBinding binding;
+    private MainActivity view;
+    RecyclerView recyclerView;
+    CA_student_home ca_student_home;
 
     @Override
     public View onCreateView(
@@ -64,8 +64,16 @@ public class StudentHome extends Fragment {
             }
         });
         //End of Test
-        binding = StudentHomeBinding.inflate(inflater, container, false);
+        view = new MainActivity();
+        binding = com.example.androidcourseplanner_final.databinding.StudentHomeBinding.inflate(inflater, container,false);
         return binding.getRoot();
+    }
+    public void displayItems(List<String> courses, int itemCount){
+        recyclerView = binding.recyclerView;
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
+        ca_student_home = new CA_student_home(getContext(), new StudentHome(), courses, itemCount);
+        recyclerView.setAdapter(ca_student_home);
     }
 
     private void generateLists(){
@@ -82,8 +90,10 @@ public class StudentHome extends Fragment {
         });
     }
 
+
     private void createTakenDialog(Student s, List<String> courseList) {
         String[] courseArr = new String[courseList.size()];
+
         for (int i = 0; i < courseArr.length; i++)
             courseArr[i] = courseList.get(i);
 
@@ -111,6 +121,11 @@ public class StudentHome extends Fragment {
                 for(int l = 0; l < selectedItems.size(); l++)
                     s.addTakenCourse(courseArr[selectedItems.get(l)]);
                 selectedItems.clear();
+                if (s.getTakenCourses() != null) {
+                    displayItems(s.getTakenCourses(), s.getTakenCourses().size());
+                } else {
+                    displayItems(s.getTakenCourses(), 0);
+                }
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -196,6 +211,14 @@ public class StudentHome extends Fragment {
         return !student.getTakenCourses().contains(course.getCourseCode());
     }
 
+    public void reload() {
+
+        NavHostFragment.findNavController(StudentHome.this)
+                .navigate(R.id.action_StudentHome_self);
+
+    }
+
+
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -203,7 +226,14 @@ public class StudentHome extends Fragment {
 
         LoginModel.getInstance().getProfile(new GetProfileCallback() {
             @Override
-            public void onStudent(Student student) { binding.studentText.setText(student.getId()); }
+            public void onStudent(Student student) {
+                binding.studentText.setText(student.getId());
+                if (student.getTakenCourses() != null) {
+                    displayItems(student.getTakenCourses(), student.getTakenCourses().size());
+                } else {
+                    displayItems(student.getTakenCourses(), 0);
+                }
+            }
 
             @Override
             public void onAdmin(Profile admin) {
@@ -236,6 +266,7 @@ public class StudentHome extends Fragment {
                                         eligibleCourses.add(c.getCourseCode());
 
                                 createTakenDialog(student, eligibleCourses);
+
                             }
                         });
                     }
