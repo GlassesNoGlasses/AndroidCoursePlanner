@@ -43,6 +43,7 @@ import Backend.TimelineCallback;
 public class StudentHome extends Fragment {
 
     private StudentHomeBinding binding;
+    private MainActivity view = new MainActivity();
 
     @Override
     public View onCreateView(
@@ -153,6 +154,24 @@ public class StudentHome extends Fragment {
                     plannedCourses.add(courseArr[selectedItems.get(l)]);
 
                 //TODO send plannedCourses and student into generate timeline and navigate fragments
+                LoginModel.getInstance().getProfile(new GetProfileCallback() {
+                    @Override
+                    public void onStudent(Student student) {
+                        Timeline.getInstance().generateTimeline(student, plannedCourses, new TimelineCallback() {
+                            @Override
+                            public void onCallback(HashMap<Integer, HashMap<Integer, List<String>>> callback) {
+                                view.setTimeline(callback);
+                                NavHostFragment.findNavController(StudentHome.this)
+                                        .navigate(R.id.action_StudentHome_to_StudentPlanCreator);
+                            }
+                        });
+
+                    }
+                    @Override
+                    public void onAdmin(Profile admin) {
+
+                    }
+                });
 
                 selectedItems.clear();
             }

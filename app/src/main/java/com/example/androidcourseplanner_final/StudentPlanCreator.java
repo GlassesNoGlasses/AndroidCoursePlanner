@@ -22,9 +22,10 @@ import UI.CA_Parent_View;
 
 public class StudentPlanCreator extends Fragment {
     private StudentPlanCreatorBinding binding;
+    private MainActivity view = new MainActivity();
 
     RecyclerView recyclerView;
-    HashMap<String, List<String>> timeline;
+    HashMap<Integer, HashMap<Integer, List<String>>> timeline;
     CA_Parent_View customAdapter;
 
     @Override
@@ -48,17 +49,8 @@ public class StudentPlanCreator extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        List<String> winter = new ArrayList<String>();
-        winter.add("CSCA08");
-        winter.add("CSCB01");
-        List<String> summer = new ArrayList<String>();
-        summer.add("LOL201");
-        summer.add("MATB41");
-        summer.add("MUZA80");
-        timeline = new HashMap<String, List<String>>();
-        timeline.put("Winter 2023", winter);
-        timeline.put("Summer 2023", summer);
         //TODO need generated timeline for displayItems call
+        timeline = this.view.getTimeline();
         displayItems();
 
         binding.backButton.setOnClickListener(new View.OnClickListener() {

@@ -17,9 +17,9 @@ import java.util.Set;
 
 public class CA_Parent_View extends RecyclerView.Adapter<CVH_student_plan_session> {
     private Context context;
-    private HashMap<String, List<String>> timeline;
+    private HashMap<Integer, HashMap<Integer, List<String>>> timeline;
 
-    public CA_Parent_View(Context context, HashMap<String, List<String>> timeline) {
+    public CA_Parent_View(Context context, HashMap<Integer, HashMap<Integer, List<String>>> timeline) {
         this.context = context;
         this.timeline = timeline;
     }
