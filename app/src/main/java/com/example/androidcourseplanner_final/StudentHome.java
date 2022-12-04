@@ -43,28 +43,13 @@ import Backend.TimelineCallback;
 public class StudentHome extends Fragment {
 
     private StudentHomeBinding binding;
-    private MainActivity view = new MainActivity();
+    private MainActivity view;
 
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-        //Testing Timeline
-        List<String> testTimeline = new ArrayList<>();
-        testTimeline.add("TIME04");
-        testTimeline.add("LOL201");
-        testTimeline.add("MATA37");
-        Student testStudent = new Student();
-        testStudent.addTakenCourse("TIME01");
-        testStudent.addTakenCourse("MATA31");
-        Timeline.getInstance().generateTimeline(testStudent, testTimeline, new TimelineCallback() {
-            @Override
-            public void onCallback(HashMap<Integer, HashMap<Integer, List<String>>> callback) {
-                Log.d("Timeline StudentHome:", String.valueOf(callback));
-            }
-        });
-        //End of Test
         binding = StudentHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
