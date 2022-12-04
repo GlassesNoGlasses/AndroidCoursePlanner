@@ -11,20 +11,22 @@
         <TextView
             android:id="@+id/course_code"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight=".7"
             android:gravity="center"
             android:text="CSCB07"
 
+            android:textAlignment="textStart"
             android:textSize="30sp" />
 
         <TextView
             android:id="@+id/course_name"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Software Design"
             android:gravity="center"
+            android:text="Software Design"
+            android:textAlignment="textEnd"
             android:textSize="12sp" />
 
         <Button
