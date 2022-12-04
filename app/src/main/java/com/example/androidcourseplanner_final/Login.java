@@ -39,21 +39,27 @@ public class Login extends Fragment {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
+    public String getEmail() {
+        return binding.Email.getText().toString();
+    }
+
+    public String getPassword() {
+        return binding.Password.getText().toString();
+    }
+
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         binding.LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = binding.Email.getText().toString();
-                String password = binding.Password.getText().toString();
 
-                if(UserInfoChecker.checkEmail(email) != null || UserInfoChecker.checkPassword(password) != null) {
+                if(UserInfoChecker.checkEmail(getEmail()) != null || UserInfoChecker.checkPassword(getPassword()) != null) {
                     generateMessage("Missing required information");
                     return;
                 }
 
-                presenter.signIn(email, password, new AuthenticationCallback() {
+                presenter.signIn(getEmail(), getPassword(), new AuthenticationCallback() {
                     @Override
                     public void onSuccess() {
                         LoginModel.getInstance().getProfile(new GetProfileCallback() {
