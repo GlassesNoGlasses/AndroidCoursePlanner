@@ -50,14 +50,19 @@ public class StudentHome extends Fragment {
             Bundle savedInstanceState
     ) {
         //Testing Timeline
-//        List<String> testTimeline = new ArrayList<>();
-//        testTimeline.add("TIME02");
-//        Timeline.getInstance().generateTimeline(testTimeline, new TimelineCallback() {
-//            @Override
-//            public void onCallback(HashMap<String, List<String>> callback) {
-//                Log.d("Timeline StudentHome:", String.valueOf(callback));
-//            }
-//        });
+        List<String> testTimeline = new ArrayList<>();
+        testTimeline.add("TIME04");
+        testTimeline.add("LOL201");
+        testTimeline.add("MATA37");
+        Student testStudent = new Student();
+        testStudent.addTakenCourse("TIME01");
+        testStudent.addTakenCourse("MATA31");
+        Timeline.getInstance().generateTimeline(testStudent, testTimeline, new TimelineCallback() {
+            @Override
+            public void onCallback(HashMap<Integer, HashMap<Integer, List<String>>> callback) {
+                Log.d("Timeline StudentHome:", String.valueOf(callback));
+            }
+        });
         //End of Test
         binding = StudentHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();
