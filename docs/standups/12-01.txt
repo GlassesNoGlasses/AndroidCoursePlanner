@@ -1,0 +1,46 @@
+Who: Neil
+
+What you did: Created the bases of developing a timeline; mapped the “planned courses” within a student class to their required prerequisites using a hashmap.
+
+What you are planning on doing: Finishing the timeline to map Session dates to courses (backend of timeline).
+
+Obstructions: None
+
+ 
+
+Who: Ethan
+
+What you did: ensured lists showed when adding taken/planned courses only show eligible courses
+
+What you are planning on doing: testing course edit/delete, helping design planTimeline method
+
+Obstructions: prerequisite support for admin editing courses, and adding taken/planned courses support for students
+
+ 
+
+Who: Jeremy
+
+What you did: developed UI and partial implementation for the course timeline screen
+
+What you are planning on doing: alert dialogs for student home screen and finishing timeline UI
+
+Obstructions: RecyclerView for student home
+
+
+
+Who: Austin
+
+What you did: Contributed fixes to the pre-requisite dropdown menus for editing and creation of courses.
+
+What you are planning on doing: Finish up login ui tests
+
+Obstructions: Nothing
+
+
+Who: Morris
+
+What you did: switched to alertdialog for asking input for courses and refactor code to get rid of useless classes and methods
+
+What you are planning on doing: displaying the input on the screen
+
+Obstructions: None
