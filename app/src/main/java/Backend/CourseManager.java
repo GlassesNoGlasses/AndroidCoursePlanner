@@ -125,7 +125,6 @@ public final class CourseManager {
         });
     }
 
-    //TODO test this method after adding course editing
     public void editCourse(Course original, Course edited) {
         //remove course from database
         courseRef.child(original.courseCode).removeValue();
