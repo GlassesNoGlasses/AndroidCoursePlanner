@@ -34,3 +34,12 @@ What you did: Polished the admin home recycler view and added alert dialog for c
 What you are planning on doing: adding alert dialogs to both course lists in student home
 
 Obstructions: None
+
+
+Who: Morris
+
+What you did: Created the student add taken course recycler view and update student home page
+
+What you are planning on doing: implement the adding course to taken course view in student home
+
+Obstructions: None
