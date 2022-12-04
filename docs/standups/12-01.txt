@@ -39,8 +39,8 @@ Obstructions: Nothing
 
 Who: Morris
 
-What you did: Created the student add taken course recycler view and update student home page
+What you did: switched to alertdialog for asking input for courses and refactor code to get rid of useless classes and methods
 
-What you are planning on doing: implement the adding course to taken course view in student home
+What you are planning on doing: displaying the input on the screen
 
 Obstructions: None
