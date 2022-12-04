@@ -49,21 +49,6 @@ public class StudentHome extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-        //Testing Timeline
-        List<String> testTimeline = new ArrayList<>();
-        testTimeline.add("TIME04");
-        testTimeline.add("LOL201");
-        testTimeline.add("MATA37");
-        Student testStudent = new Student();
-        testStudent.addTakenCourse("TIME01");
-        testStudent.addTakenCourse("MATA31");
-        Timeline.getInstance().generateTimeline(testStudent, testTimeline, new TimelineCallback() {
-            @Override
-            public void onCallback(HashMap<Integer, HashMap<Integer, List<String>>> callback) {
-                Log.d("Timeline StudentHome:", String.valueOf(callback));
-            }
-        });
-        //End of Test
         view = new MainActivity();
         binding = com.example.androidcourseplanner_final.databinding.StudentHomeBinding.inflate(inflater, container,false);
         return binding.getRoot();
@@ -72,7 +57,7 @@ public class StudentHome extends Fragment {
         recyclerView = binding.recyclerView;
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
-        ca_student_home = new CA_student_home(getContext(), new StudentHome(), courses, itemCount);
+        ca_student_home = new CA_student_home(getContext(), this, courses, itemCount);
         recyclerView.setAdapter(ca_student_home);
     }
 
