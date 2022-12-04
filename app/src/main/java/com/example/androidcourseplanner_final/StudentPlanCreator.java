@@ -42,14 +42,12 @@ public class StudentPlanCreator extends Fragment {
         recyclerView = binding.courseList;
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
-        //TODO need generated timeline for adapter initialization
         customAdapter = new CA_Parent_View(getContext(), timeline);
         recyclerView.setAdapter(customAdapter);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //TODO need generated timeline for displayItems call
         timeline = this.view.getTimeline();
         displayItems();
 
