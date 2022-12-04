@@ -169,8 +169,6 @@ public class AdminCourseEdit extends Fragment {
                             "Fill in empty sessions", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                //TODO check if prerequisites are empty
-
                 newCourse.setName(newCourseName);
                 newCourse.setCourseCode(newCourseCode);
 
@@ -181,8 +179,6 @@ public class AdminCourseEdit extends Fragment {
                     newCourse.addSession(Session.Summer);
                 if (binding.winterCheckBox.isChecked())
                     newCourse.addSession(Session.Winter);
-
-                //TODO add prerequisites from dropdown
 
                 //check if they are changing course code to one that exists elsewhere
                 CourseManager cm = CourseManager.getInstance();

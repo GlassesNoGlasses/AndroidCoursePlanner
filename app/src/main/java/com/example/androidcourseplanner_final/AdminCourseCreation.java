@@ -1,7 +1,6 @@
 package com.example.androidcourseplanner_final;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import androidx.appcompat.app.AlertDialog;
 import android.content.DialogInterface;
 import java.util.ArrayList;
 import android.widget.TextView;
-import android.app.Dialog;
 
 import java.util.List;
 

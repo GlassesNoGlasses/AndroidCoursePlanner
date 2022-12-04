@@ -1,6 +1,5 @@
 package Backend;
 
-import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -31,36 +30,5 @@ public abstract class ProfileManager {
                         Log.d("Profile", "User profile Failed.");
                     }
                 });
-    }
-
-    public static String getDisplayName() {
-        if(user == null)  return null;
-        return user.getDisplayName();
-    }
-    public static void changeEmail(String email) {
-        if(user == null) return;
-        user.updateEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()) {
-                    Log.d("EmailChange", "Success");
-                    return;
-                }
-                Log.d("EmailChange", "Invalid Email");
-            }
-        });
-    }
-
-    public static void changePassword(String password) {
-        user.updatePassword(password).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()) {
-                    Log.d("PasswordChange", "Success");
-                    return;
-                }
-                Log.d("PasswordChange", "Invalid Password");
-            }
-        });
     }
 }

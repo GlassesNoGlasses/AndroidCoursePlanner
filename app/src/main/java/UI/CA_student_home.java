@@ -13,18 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.androidcourseplanner_final.R;
 import com.example.androidcourseplanner_final.StudentHome;
 
-import java.io.Console;
 import java.util.List;
 
 import Backend.Course;
 import Backend.CourseManager;
 import Backend.GetCourseCallback;
-import Backend.GetCoursesCallback;
 import Backend.GetProfileCallback;
 import Backend.LoginModel;
-import Backend.LoginPresenter;
 import Backend.Profile;
-import Backend.ProfileManager;
 import Backend.Student;
 
 public class CA_student_home extends RecyclerView.Adapter<CVH_student_home> {

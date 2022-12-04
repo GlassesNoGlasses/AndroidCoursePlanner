@@ -6,7 +6,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public abstract class Logout {
 
-    //User signout function
+    //User sign-out function
     public static boolean signOut() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
@@ -16,7 +16,6 @@ public abstract class Logout {
             return true;
 
         } catch (Exception e) {
-            //TODO Create alert upon failure
             Log.d("Signout", "Signout failed");
         }
         return false;

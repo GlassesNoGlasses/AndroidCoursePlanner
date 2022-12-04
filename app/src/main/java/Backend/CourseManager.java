@@ -73,7 +73,6 @@ public final class CourseManager {
         courseRef.child(course.courseCode).setValue(course);
     }
 
-    //TODO test this method after adding course deleting
     public void deleteCourse(Course course) {
         //remove course from database
         courseRef.child(course.courseCode).removeValue();

@@ -1,9 +1,5 @@
 package Backend;
 
-import android.util.Log;
-
-import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.ArrayList;
 import java.util.List;
 

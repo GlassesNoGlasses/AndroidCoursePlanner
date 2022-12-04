@@ -14,8 +14,6 @@ import com.example.androidcourseplanner_final.databinding.SignupBinding;
 
 import Backend.AuthenticationCallback;
 import Backend.LoginModel;
-import Backend.UserInfoChecker;
-
 
 public class Signup extends Fragment {
     private SignupBinding binding;

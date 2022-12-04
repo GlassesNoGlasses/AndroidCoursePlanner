@@ -13,11 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import UI.CA_Child_View;
 import UI.CA_Parent_View;
 
 public class StudentPlanCreator extends Fragment {

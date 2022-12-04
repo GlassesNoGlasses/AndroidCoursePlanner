@@ -1,12 +1,9 @@
 package Backend;
 
-import android.provider.ContactsContract;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -16,14 +13,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public final class Timeline {
-    private static DatabaseReference courseRef = FirebaseDatabase.getInstance().getReference("Courses");
+    private DatabaseReference courseRef = FirebaseDatabase.getInstance().getReference("Courses");
     private HashMap<String, List<String>> timelineMap;
-    private static HashMap<Integer, HashMap<Integer, List<String>>> timeline;
+    private HashMap<Integer, HashMap<Integer, List<String>>> timeline;
     private static Timeline instance;
 
     private Timeline() {
@@ -127,7 +123,6 @@ public final class Timeline {
     public void mapPrereqsToCode(List<String> plannedCourses, List<String> takenCourses, DataSnapshot courses) {
         if (plannedCourses == null || plannedCourses.isEmpty()) return;
         String currentCourse = plannedCourses.get(0);
-//        Log.d("Inside Map Course: ", currentCourse);
 
         if(currentCourse == null || takenCourses.contains(currentCourse)
                 || timelineMap.containsKey(currentCourse)) {
@@ -136,18 +131,15 @@ public final class Timeline {
         }
         else {
             Course course = courses.child(currentCourse).getValue(Course.class);
-//        Log.d("Inside Map Course: ", currentCourse);
             List<String> prereqCopy = new ArrayList<>();
             if (course.prerequisites != null) {
                 for(String courseCode: course.prerequisites) {
-                Log.d("Inside Map Course: ", courseCode);
                     if(!(takenCourses.contains(courseCode) || prereqCopy.contains(courseCode))) {
                         prereqCopy.add(courseCode);
                     }
                 }
             }
 
-//            Log.d("preReqCopy: ", String.valueOf(prereqCopy));
             timelineMap.put(currentCourse, prereqCopy);
             plannedCourses.remove(0);
             mapPrereqsToCode(plannedCourses, takenCourses, courses);
@@ -184,4 +176,4 @@ public final class Timeline {
         return new Integer(offerings);
     }
 
-    }
+}

@@ -1,11 +1,7 @@
 package com.example.androidcourseplanner_final;
 
-import static androidx.databinding.DataBindingUtil.inflate;
-import static androidx.databinding.DataBindingUtil.setContentView;
-
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,21 +56,6 @@ public class StudentHome extends Fragment {
         ca_student_home = new CA_student_home(getContext(), this, courses, itemCount);
         recyclerView.setAdapter(ca_student_home);
     }
-
-    private void generateLists(){
-        LoginModel.getInstance().getProfile(new GetProfileCallback() {
-            @Override
-            public void onStudent(Student student) {
-
-            }
-
-            @Override
-            public void onAdmin(Profile admin) {
-
-            }
-        });
-    }
-
 
     private void createTakenDialog(Student s, List<String> courseList) {
         String[] courseArr = new String[courseList.size()];
@@ -152,7 +133,6 @@ public class StudentHome extends Fragment {
                 for(int l = 0; l < selectedItems.size(); l++)
                     plannedCourses.add(courseArr[selectedItems.get(l)]);
 
-                //TODO send plannedCourses and student into generate timeline and navigate fragments
                 LoginModel.getInstance().getProfile(new GetProfileCallback() {
                     @Override
                     public void onStudent(Student student) {
@@ -224,8 +204,6 @@ public class StudentHome extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        generateLists();
 
         LoginModel.getInstance().getProfile(new GetProfileCallback() {
             @Override

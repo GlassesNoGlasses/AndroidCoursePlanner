@@ -8,9 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidcourseplanner_final.R;
-import com.example.androidcourseplanner_final.StudentPlanCreator;
 
-import java.util.HashMap;
 import java.util.List;
 
 import Backend.Course;
@@ -37,7 +35,6 @@ public class CA_Child_View extends RecyclerView.Adapter<CVH_student_plan_creator
 
     @Override
     public void onBindViewHolder(@NonNull CVH_student_plan_creator holder, int position) {
-        //TODO add the course name, course code of the course taken from the generated timeline
         holder.course_code.setText(courseCodes.get(holder.getAdapterPosition()));
         CourseManager.getInstance().getCourse(new GetCourseCallback() {
             @Override
