@@ -9,16 +9,17 @@ o	Created LoginModel.
 o	Created LoginPresenter.
 •	Created Timeline class to generate a timeline data structure for fronted.
 •	Facilitated Scrum meetings.
-•	Organized and assigned tasks/stories to members.
 •	Created the ProfileManager class.
 •	Created UserInfoChecker class to check for valid Login/Signup information.
 •	Assisted in backend Firebase authentication and Firebase Realtime Database knowledge.
+
 Jeremy:
 •	Figma Student layouts design
 •	Android Studio Student layouts xml
 •	Android Studio Admin generate timeline xml
 •	Admin home UI-Backend integration
 •	Student plan creator UI-Backend integration
+
 Ethan:
 •	Backend Design (UML Diagram)
 •	Created and implemented most Backend Classes so the frontend team could use it as an API
@@ -35,6 +36,7 @@ Morris:
 •	Android Studio xml layouts admin and sign ins
 •	Implemented backend-UI integration for students
 •	Assisted with updating student UI
+
 Austin
 •	Helped with design planning (review and editing)
 •	Set up the navigation graph xml for navigating between pages.
@@ -44,5 +46,42 @@ Austin
 •	Implemented unit tests for the Model-View-Presenter of the login fragment.
 •	Assisted with timeline generation backend-frontend integration.
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+Scrum Meeting Summaries:
 
+11-16: Established agreement.txt, Jira, and GitHub repo.
+
+11-17: Created definition of "done", performed playing poker on user stories, created
+basic requirements for user stories, learned about firebase and Figma UI.
+
+11-18: Group learning (Firebase basics, Figma design patterns), optimization
+(establishing user stories basics and implementation drafts).
+
+11-21: Started android project, connected project with Firebase, established UML,
+began implementing main classes/interfaces for backend.
+
+11-23: Started first sprint, connecting Figma design with project.
+
+11-24: Resolving issues with Figma and project sync, working with admin and
+student login process.
+
+11-25: Tested login module for students and admins, implementing frontend basic UI.
+
+11-28: Added main fragments and activity to project (with UI), implemented nav graphs,
+added unit test base test functions.
+
+11-29: Login module refactoring, worked on Timeline generation, UI and recyclerview
+integration with backend, working on prerequisite display for courses.
+
+11-30: Implemented recyclerviews for UI, fragment transitions for Admin and course
+edits, finished prerequsite display for courses.
+
+12-01: Created bases of timeline, updated UI to work with multiple screens at once,
+displaying changes in realtime.
+
+12-02: JUnit testing and UI testing, timeline backend brainstorming, timeline UI
+completion, Student UI refactoring.
+
+12-03: Finished timeline backend, integration of timeline backend with UI completed,
+figuring out errors related to student UI and deleting taken courses.
