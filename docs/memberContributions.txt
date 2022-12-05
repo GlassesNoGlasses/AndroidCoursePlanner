@@ -1,0 +1,48 @@
+Member Contributions
+
+Neil:
+•	Android Studio Creating admin-related fragments.
+o	Creating transitions for admin-related fragments.
+•	Designed and implemented Logout class for users to logout from their accounts.
+•	Assisted and designed the Login Module and implementation
+o	Created LoginModel.
+o	Created LoginPresenter.
+•	Created Timeline class to generate a timeline data structure for fronted.
+•	Facilitated Scrum meetings.
+•	Organized and assigned tasks/stories to members.
+•	Created the ProfileManager class.
+•	Created UserInfoChecker class to check for valid Login/Signup information.
+•	Assisted in backend Firebase authentication and Firebase Realtime Database knowledge.
+Jeremy:
+•	Figma Student layouts design
+•	Android Studio Student layouts xml
+•	Android Studio Admin generate timeline xml
+•	Admin home UI-Backend integration
+•	Student plan creator UI-Backend integration
+Ethan:
+•	Backend Design (UML Diagram)
+•	Created and implemented most Backend Classes so the frontend team could use it as an API
+•	Assisted in backend Firebase authentication
+•	Set up reading and writing with Firebase Realtime Database
+•	Set up student-related fragments in Android Studio
+•	Implemented backend for creating, editing, removing courses for admins
+•	Implemented backend for taking and planning courses for students
+•	Assisted with backend-UI integration for admin course management and student course management
+
+
+Morris:
+•	Figma layout design files
+•	Android Studio xml layouts admin and sign ins
+•	Implemented backend-UI integration for students
+•	Assisted with updating student UI
+Austin
+•	Helped with design planning (review and editing)
+•	Set up the navigation graph xml for navigating between pages.
+•	Implemented prerequisite drop down menu for backend-frontend integration for adding new courses for admins.
+•	Implemented original prerequisite drop down menu for backend-frontend integration for editing existing courses for admins.
+•	Created a ModelAdapter class to adapt the Model class to make it testable.
+•	Implemented unit tests for the Model-View-Presenter of the login fragment.
+•	Assisted with timeline generation backend-frontend integration.
+
+
+
