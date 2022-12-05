@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/Login">
+
+
+    <fragment
+        android:id="@+id/Login"
+        android:name="com.example.androidcourseplanner_final.Login"
+        android:label="Login"
+        tools:layout="@layout/login">
+
+        <action
+            android:id="@+id/action_Login_to_StudentHome"
+            app:destination="@id/StudentHome" />
+        <action
+            android:id="@+id/action_Login_to_Signup"
+            app:destination="@id/Signup" />
+        <action
+            android:id="@+id/action_Login_to_AdminHome"
+            app:destination="@id/AdminHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/Signup"
+        android:name="com.example.androidcourseplanner_final.Signup"
+        android:label="Signup"
+        tools:layout="@layout/signup">
+
+        <action
+            android:id="@+id/action_Signup_to_Login"
+            app:destination="@id/Login" />
+    </fragment>
+    <fragment
+        android:id="@+id/AdminHome"
+        android:name="com.example.androidcourseplanner_final.AdminHome"
+        android:label="Admin Home"
+        tools:layout="@layout/admin_home">
+        <action
+            android:id="@+id/action_AdminHome_to_AdminCourseCreation"
+            app:destination="@id/AdminCourseCreation" />
+        <action
+            android:id="@+id/action_Signup_to_Login"
+            app:destination="@id/Login" />
+        <action
+            android:id="@+id/action_AdminHome_to_AdminCourseEdit"
+            app:destination="@+id/AdminCourseEdit"
+            />
+        <action
+            android:id="@+id/action_AdminHome_self"
+            app:destination="@id/AdminHome" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/StudentHome"
+        android:name="com.example.androidcourseplanner_final.StudentHome"
+        android:label="Student Home"
+        tools:layout="@layout/student_home">
+        <action
+            android:id="@+id/action_StudentHome_to_Login"
+            app:destination="@id/Login" />
+        <action
+            android:id="@+id/action_StudentHome_to_StudentPlanCreator"
+            app:destination="@id/StudentPlanCreator" />
+        <action
+            android:id="@+id/action_StudentHome_self"
+            app:destination="@id/StudentHome" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/AdminCourseCreation"
+        android:name="com.example.androidcourseplanner_final.AdminCourseCreation"
+        android:label="Admin Course Creation"
+        tools:layout="@layout/admin_course_creation">
+
+        <action
+            android:id="@+id/action_AdminCourseCreation_to_AdminHome"
+            app:destination="@id/AdminHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/AdminCourseEdit"
+        android:name="com.example.androidcourseplanner_final.AdminCourseEdit"
+        android:label="Admin Course Edit"
+        tools:layout="@layout/admin_course_edit">
+
+        <action
+            android:id="@+id/action_AdminCourseEdit_to_AdminHome"
+            app:destination="@id/AdminHome" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/StudentPlanCreator"
+        android:name="com.example.androidcourseplanner_final.StudentPlanCreator"
+        android:label="Student Plan Creator"
+        tools:layout="@layout/student_plan_creator">
+
+        <action
+            android:id="@+id/action_StudentPlanCreator_to_StudentHome"
+            app:destination="@id/StudentHome" />
+    </fragment>
+
+
+</navigation>
+
